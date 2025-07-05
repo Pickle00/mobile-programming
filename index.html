@@ -1,0 +1,3862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Programming Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#1e293b',
+                        accent: '#3b82f6',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        danger: '#ef4444'
+                    },
+                    fontFamily: {
+                        'mono': ['JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .code-block {
+            max-height: 800px;
+            overflow-y: auto;
+            font-size: 14px;
+        }
+        .code-block::-webkit-scrollbar {
+            width: 8px;
+        }
+        .code-block::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        .code-block::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+        pre[class*="language-"] {
+            margin: 0 !important;
+            border-radius: 0.5rem !important;
+            font-size: 14px !important;
+        }
+        code[class*="language-"] {
+            font-size: 14px !important;
+        }
+    </style>
+</head>
+<body class="from-slate-50 to-blue-50 text-slate-800 font-sans">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white border-b border-white/20">
+        <div class="max-w-7xl mx-auto px-4 py-2">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl font-bold text-primary">Mobile Programming</h1>
+                    <p class="text-sm text-slate-600">Android Development Study Guide</p>
+                </div>
+                <div class="hidden md:flex space-x-6 text-sm">
+                    <a href="#unit3" class="nav-link text-slate-600 hover:text-accent font-bold transition-colors">UI Design</a>
+                    <a href="#unit4" class="nav-link text-slate-600 hover:text-accent font-bold transition-colors">Activities</a>
+                    <a href="#unit5" class="nav-link text-slate-600 hover:text-accent font-bold transition-colors">Fragments</a>
+                    <a href="#unit6" class="nav-link text-slate-600 hover:text-accent font-bold transition-colors">Lists</a>
+                    <a href="#unit7" class="nav-link text-slate-600 hover:text-accent font-bold transition-colors">Advanced</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        
+        <!-- Unit 3: UI Design -->
+        <section id="unit3" class="mb-20">
+            <div class="bg-white/70  rounded-2xl  border border-white/20 p-8">
+                <div class="flex items-center mb-8">
+                    <div class="w-12 h-12 bg-accent rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4">3</div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-primary">Designing the User Interface</h2>
+                        <p class="text-slate-600">Android layouts, widgets, and resources • 5 Hours</p>
+                    </div>
+                </div>
+
+                <!-- Layout Types -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center text-accent font-bold text-sm mr-3">L</span>
+                        Android Layout Types
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 gap-8">
+                        <!-- Linear Layout -->
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
+                            <h4 class="text-xl font-semibold text-blue-800 mb-3">Linear Layout</h4>
+                            <p class="text-blue-700 mb-4">Arranges child views in a single row or column</p>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-xml">&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"&gt;
+    
+    &lt;TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="First Item"
+        android:textSize="18sp" /&gt;
+    
+    &lt;Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Click Me"
+        android:layout_marginTop="8dp" /&gt;
+    
+    &lt;EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter text here"
+        android:layout_marginTop="8dp" /&gt;
+        
+&lt;/LinearLayout&gt;</code></pre>
+                            </div>
+                            <div class="mt-4 p-3 bg-blue-100 rounded-lg">
+                                <p class="text-sm text-blue-800"><strong>Key Attribute:</strong> <code class="bg-blue-200 px-2 py-1 rounded">android:orientation="vertical|horizontal"</code></p>
+                            </div>
+                        </div>
+
+                        <!-- Relative Layout -->
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-100">
+                            <h4 class="text-xl font-semibold text-green-800 mb-3">Relative Layout</h4>
+                            <p class="text-green-700 mb-4">Positions child views relative to each other or parent</p>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-xml">&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"&gt;
+    
+    &lt;TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome"
+        android:textSize="24sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" /&gt;
+    
+    &lt;Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_below="@id/titleText"
+        android:layout_marginTop="20dp" /&gt;
+    
+    &lt;Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:layout_below="@id/loginButton"
+        android:layout_marginTop="10dp" /&gt;
+        
+&lt;/RelativeLayout&gt;</code></pre>
+                            </div>
+                            <div class="mt-4 p-3 bg-green-100 rounded-lg">
+                                <p class="text-sm text-green-800"><strong>Key Attributes:</strong> <code class="bg-green-200 px-2 py-1 rounded">layout_below, layout_toRightOf, layout_centerInParent</code></p>
+                            </div>
+                        </div>
+
+                        <!-- Constraint Layout -->
+                        <div class="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-6 border border-purple-100">
+                            <h4 class="text-xl font-semibold text-purple-800 mb-3">Constraint Layout</h4>
+                            <p class="text-purple-700 mb-4">Flexible layout using constraints between views</p>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-xml">&lt;androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"&gt;
+    
+    &lt;TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Constraint Layout Demo"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp" /&gt;
+    
+    &lt;Button
+        android:id="@+id/centerButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Centered Button"
+        app:layout_constraintTop_toBottomOf="@id/titleText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp" /&gt;
+        
+&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</code></pre>
+                            </div>
+                            <div class="mt-4 p-3 bg-purple-100 rounded-lg">
+                                <p class="text-sm text-purple-800"><strong>Advantage:</strong> Better performance, handles complex layouts efficiently</p>
+                            </div>
+                        </div>
+
+                        <!-- Table Layout -->
+                        <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-6 border border-orange-100">
+                            <h4 class="text-xl font-semibold text-orange-800 mb-3">Table Layout</h4>
+                            <p class="text-orange-700 mb-4">Arranges views in rows and columns like a table</p>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-xml">&lt;TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:stretchColumns="1"&gt;
+    
+    &lt;TableRow&gt;
+        &lt;TextView
+            android:text="Name:"
+            android:textStyle="bold"
+            android:padding="8dp" /&gt;
+        &lt;EditText
+            android:hint="Enter your name"
+            android:layout_weight="1" /&gt;
+    &lt;/TableRow&gt;
+    
+    &lt;TableRow&gt;
+        &lt;TextView
+            android:text="Email:"
+            android:textStyle="bold"
+            android:padding="8dp" /&gt;
+        &lt;EditText
+            android:hint="Enter your email"
+            android:inputType="textEmailAddress"
+            android:layout_weight="1" /&gt;
+    &lt;/TableRow&gt;
+    
+    &lt;TableRow&gt;
+        &lt;TextView
+            android:text="Phone:"
+            android:textStyle="bold"
+            android:padding="8dp" /&gt;
+        &lt;EditText
+            android:hint="Enter phone number"
+            android:inputType="phone"
+            android:layout_weight="1" /&gt;
+    &lt;/TableRow&gt;
+    
+&lt;/TableLayout&gt;</code></pre>
+                            </div>
+                            <div class="mt-4 p-3 bg-orange-100 rounded-lg">
+                                <p class="text-sm text-orange-800"><strong>Use Case:</strong> Perfect for forms with label-input pairs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Android Widgets -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center text-success font-bold text-sm mr-3">W</span>
+                        Android Widgets
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-blue-50 rounded-xl p-6 border border-blue-100">
+                            <h4 class="text-lg font-semibold text-blue-800 mb-2">TextView</h4>
+                            <p class="text-blue-700 text-sm mb-3">Displays text to user (read-only)</p>
+                            <div class="bg-blue-100 rounded-lg p-2">
+                                <code class="text-xs text-blue-800">android:text, android:textSize, android:textColor</code>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-50 rounded-xl p-6 border border-green-100">
+                            <h4 class="text-lg font-semibold text-green-800 mb-2">EditText</h4>
+                            <p class="text-green-700 text-sm mb-3">Accepts text input from user</p>
+                            <div class="bg-green-100 rounded-lg p-2">
+                                <code class="text-xs text-green-800">android:hint, android:inputType</code>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-purple-50 rounded-xl p-6 border border-purple-100">
+                            <h4 class="text-lg font-semibold text-purple-800 mb-2">CheckBox</h4>
+                            <p class="text-purple-700 text-sm mb-3">Multiple selection option</p>
+                            <div class="bg-purple-100 rounded-lg p-2">
+                                <code class="text-xs text-purple-800">android:checked, android:text</code>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-orange-50 rounded-xl p-6 border border-orange-100">
+                            <h4 class="text-lg font-semibold text-orange-800 mb-2">RadioButton</h4>
+                            <p class="text-orange-700 text-sm mb-3">Single selection from group</p>
+                            <div class="bg-orange-100 rounded-lg p-2">
+                                <code class="text-xs text-orange-800">Use with RadioGroup</code>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-red-50 rounded-xl p-6 border border-red-100">
+                            <h4 class="text-lg font-semibold text-red-800 mb-2">Spinner</h4>
+                            <p class="text-red-700 text-sm mb-3">Dropdown list for selection</p>
+                            <div class="bg-red-100 rounded-lg p-2">
+                                <code class="text-xs text-red-800">Uses adapter with array</code>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-indigo-50 rounded-xl p-6 border border-indigo-100">
+                            <h4 class="text-lg font-semibold text-indigo-800 mb-2">Button</h4>
+                            <p class="text-indigo-700 text-sm mb-3">Clickable element for actions</p>
+                            <div class="bg-indigo-100 rounded-lg p-2">
+                                <code class="text-xs text-indigo-800">OnClickListener</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Complete Widget Example -->
+                    <div class="bg-gradient-to-r from-slate-50 to-gray-50 rounded-xl p-6 border border-gray-200">
+                        <h4 class="text-lg font-semibold text-slate-800 mb-4">Complete Widget Example</h4>
+                        <div class="bg-slate-900 rounded-lg p-4 code-block">
+                            <pre><code class="language-xml">&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"&gt;
+
+    &lt;!-- TextView --&gt;
+    &lt;TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Registration Form"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#2563eb"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp" /&gt;
+
+    &lt;!-- EditText --&gt;
+    &lt;EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your full name"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="16dp" /&gt;
+
+    &lt;EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your email"
+        android:inputType="textEmailAddress"
+        android:layout_marginBottom="16dp" /&gt;
+
+    &lt;!-- CheckBox --&gt;
+    &lt;CheckBox
+        android:id="@+id/checkBoxAgree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I agree to terms and conditions"
+        android:layout_marginBottom="16dp" /&gt;
+
+    &lt;!-- RadioGroup with RadioButtons --&gt;
+    &lt;TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gender:"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" /&gt;
+
+    &lt;RadioGroup
+        android:id="@+id/radioGroupGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"&gt;
+
+        &lt;RadioButton
+            android:id="@+id/radioButtonMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:layout_marginEnd="16dp" /&gt;
+
+        &lt;RadioButton
+            android:id="@+id/radioButtonFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female" /&gt;
+
+    &lt;/RadioGroup&gt;
+
+    &lt;!-- Spinner --&gt;
+    &lt;TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Country:"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" /&gt;
+
+    &lt;Spinner
+        android:id="@+id/spinnerCountry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp" /&gt;
+
+    &lt;!-- Button --&gt;
+    &lt;Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit Registration"
+        android:textSize="16sp"
+        android:backgroundTint="#2563eb" /&gt;
+
+&lt;/LinearLayout&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Handling -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center text-warning font-bold text-sm mr-3">E</span>
+                        Event Handling
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 gap-8">
+                        <div class="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-6 border border-yellow-100">
+                            <h4 class="text-lg font-semibold text-yellow-800 mb-4">Click Event Handling</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">public class MainActivity extends AppCompatActivity {
+    
+    private Button button;
+    private EditText editText;
+    private CheckBox checkBox;
+    private RadioGroup radioGroup;
+    private Spinner spinner;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        // Initialize views
+        button = findViewById(R.id.buttonSubmit);
+        editText = findViewById(R.id.editTextName);
+        checkBox = findViewById(R.id.checkBoxAgree);
+        radioGroup = findViewById(R.id.radioGroupGender);
+        spinner = findViewById(R.id.spinnerCountry);
+        
+        // Button click listener
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleButtonClick();
+            }
+        });
+        
+        // Lambda expression (modern approach)
+        button.setOnClickListener(v -> handleButtonClick());
+    }
+    
+    private void handleButtonClick() {
+        String name = editText.getText().toString();
+        boolean isAgreed = checkBox.isChecked();
+        
+        if (name.isEmpty()) {
+            Toast.makeText(this, "Please enter your name", 
+                         Toast.LENGTH_SHORT).show();
+            return;
+        }
+        
+        if (!isAgreed) {
+            Toast.makeText(this, "Please agree to terms", 
+                         Toast.LENGTH_SHORT).show();
+            return;
+        }
+        
+        Toast.makeText(this, "Registration successful!", 
+                     Toast.LENGTH_LONG).show();
+    }
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
+                            <h4 class="text-lg font-semibold text-blue-800 mb-4">Other Event Listeners</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">// CheckBox change listener
+checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) {
+            Toast.makeText(MainActivity.this, "Terms accepted", 
+                         Toast.LENGTH_SHORT).show();
+        }
+    }
+});
+
+// RadioGroup selection listener
+radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        RadioButton selectedRadio = findViewById(checkedId);
+        String gender = selectedRadio.getText().toString();
+        Toast.makeText(MainActivity.this, "Selected: " + gender, 
+                     Toast.LENGTH_SHORT).show();
+    }
+});
+
+// Spinner selection listener
+spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+    @Override
+    public void onItemSelected(AdapterView&lt;?&gt; parent, View view, int position, long id) {
+        String selectedCountry = parent.getItemAtPosition(position).toString();
+        Toast.makeText(MainActivity.this, "Country: " + selectedCountry, 
+                     Toast.LENGTH_SHORT).show();
+    }
+    
+    @Override
+    public void onNothingSelected(AdapterView&lt;?&gt; parent) {
+        // Do nothing
+    }
+});
+
+// EditText text change listener
+editText.addTextChangedListener(new TextWatcher() {
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+    
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        // Text is changing
+    }
+    
+    @Override
+    public void afterTextChanged(Editable s) {
+        // Text has changed
+        if (s.length() > 0) {
+            // Enable submit button
+            button.setEnabled(true);
+        }
+    }
+});</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resources -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center text-danger font-bold text-sm mr-3">R</span>
+                        Working with Resources
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 gap-8">
+                        <!-- Strings -->
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-100">
+                            <h4 class="text-lg font-semibold text-green-800 mb-4">Strings (res/values/strings.xml)</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block mb-4">
+                                <pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;string name="app_name"&gt;My Mobile App&lt;/string&gt;
+    &lt;string name="welcome_message"&gt;Welcome to our app!&lt;/string&gt;
+    &lt;string name="login_button"&gt;Login&lt;/string&gt;
+    &lt;string name="register_button"&gt;Register&lt;/string&gt;
+    &lt;string name="email_hint"&gt;Enter your email address&lt;/string&gt;
+    &lt;string name="password_hint"&gt;Enter your password&lt;/string&gt;
+    &lt;string name="terms_text"&gt;I agree to the terms and conditions&lt;/string&gt;
+&lt;/resources&gt;</code></pre>
+                            </div>
+                            <div class="bg-green-100 rounded-lg p-3">
+                                <p class="text-sm text-green-800"><strong>Usage:</strong> <code class="bg-green-200 px-2 py-1 rounded">android:text="@string/welcome_message"</code></p>
+                            </div>
+                        </div>
+
+                        <!-- String Arrays -->
+                        <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 border border-blue-100">
+                            <h4 class="text-lg font-semibold text-blue-800 mb-4">String Arrays</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block mb-4">
+                                <pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;string-array name="countries"&gt;
+        &lt;item&gt;India&lt;/item&gt;
+        &lt;item&gt;United States&lt;/item&gt;
+        &lt;item&gt;United Kingdom&lt;/item&gt;
+        &lt;item&gt;Canada&lt;/item&gt;
+        &lt;item&gt;Australia&lt;/item&gt;
+    &lt;/string-array&gt;
+    
+    &lt;string-array name="programming_languages"&gt;
+        &lt;item&gt;Java&lt;/item&gt;
+        &lt;item&gt;Kotlin&lt;/item&gt;
+        &lt;item&gt;Python&lt;/item&gt;
+        &lt;item&gt;JavaScript&lt;/item&gt;
+        &lt;item&gt;C++&lt;/item&gt;
+    &lt;/string-array&gt;
+&lt;/resources&gt;</code></pre>
+                            </div>
+                            <div class="bg-blue-100 rounded-lg p-3">
+                                <p class="text-sm text-blue-800"><strong>Usage in Java:</strong> <code class="bg-blue-200 px-2 py-1 rounded">getResources().getStringArray(R.array.countries)</code></p>
+                            </div>
+                        </div>
+
+                        <!-- Colors -->
+                        <div class="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-6 border border-purple-100">
+                            <h4 class="text-lg font-semibold text-purple-800 mb-4">Colors (res/values/colors.xml)</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block mb-4">
+                                <pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;color name="primary_color"&gt;#3F51B5&lt;/color&gt;
+    &lt;color name="primary_dark"&gt;#303F9F&lt;/color&gt;
+    &lt;color name="accent_color"&gt;#FF4081&lt;/color&gt;
+    &lt;color name="white"&gt;#FFFFFF&lt;/color&gt;
+    &lt;color name="black"&gt;#000000&lt;/color&gt;
+    &lt;color name="gray_light"&gt;#F5F5F5&lt;/color&gt;
+    &lt;color name="gray_dark"&gt;#424242&lt;/color&gt;
+    &lt;color name="success_green"&gt;#4CAF50&lt;/color&gt;
+    &lt;color name="error_red"&gt;#F44336&lt;/color&gt;
+&lt;/resources&gt;</code></pre>
+                            </div>
+                            <div class="bg-purple-100 rounded-lg p-3">
+                                <p class="text-sm text-purple-800"><strong>Usage:</strong> <code class="bg-purple-200 px-2 py-1 rounded">android:textColor="@color/primary_color"</code></p>
+                            </div>
+                        </div>
+
+                        <!-- Drawables -->
+                        <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-6 border border-orange-100">
+                            <h4 class="text-lg font-semibold text-orange-800 mb-4">Drawables & Icons</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block mb-4">
+                                <pre><code class="language-xml">&lt;!-- Shape Drawable (res/drawable/rounded_button.xml) --&gt;
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle"&gt;
+    
+    &lt;solid android:color="#3F51B5" /&gt;
+    &lt;corners android:radius="8dp" /&gt;
+    &lt;stroke 
+        android:width="2dp"
+        android:color="#303F9F" /&gt;
+        
+&lt;/shape&gt;
+
+&lt;!-- Vector Drawable (res/drawable/ic_star.xml) --&gt;
+&lt;vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="?attr/colorOnSurface"&gt;
+    
+    &lt;path android:fillColor="@android:color/white"
+          android:pathData="M12,2l3.09,6.26L22,9.27l-5,4.87 1.18,6.88L12,17.77l-6.18,3.25L7,14.14 2,9.27l6.91,-1.01L12,2z"/&gt;
+          
+&lt;/vector&gt;</code></pre>
+                            </div>
+                            <div class="bg-orange-100 rounded-lg p-3">
+                                <p class="text-sm text-orange-800"><strong>Usage:</strong> <code class="bg-orange-200 px-2 py-1 rounded">android:background="@drawable/rounded_button"</code></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Unit 4: Activities -->
+        <section id="unit4" class="mb-20">
+            <div class="bg-white/70  rounded-2xl  border border-white/20 p-8">
+                <div class="flex items-center mb-8">
+                    <div class="w-12 h-12 bg-success rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4">4</div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-primary">Android Activity</h2>
+                        <p class="text-slate-600">Activity lifecycle, intents, and data passing • 4 Hours</p>
+                    </div>
+                </div>
+
+                <!-- Activity Lifecycle -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center text-accent font-bold text-sm mr-3">L</span>
+                        Activity Life Cycle
+                    </h3>
+                    
+                    <!-- Lifecycle Flow -->
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 mb-8 border border-blue-100">
+                        <h4 class="text-lg font-semibold text-blue-800 mb-4">Lifecycle Flow</h4>
+                        <div class="flex flex-wrap justify-center items-center gap-3 text-sm">
+                            <div class="bg-blue-500 text-white px-4 py-2 rounded-lg font-medium">onCreate()</div>
+                            <span class="text-blue-500 text-xl">→</span>
+                            <div class="bg-blue-500 text-white px-4 py-2 rounded-lg font-medium">onStart()</div>
+                            <span class="text-blue-500 text-xl">→</span>
+                            <div class="bg-blue-500 text-white px-4 py-2 rounded-lg font-medium">onResume()</div>
+                            <span class="text-blue-500 text-xl">→</span>
+                            <div class="bg-green-500 text-white px-4 py-2 rounded-lg font-bold">RUNNING</div>
+                            <span class="text-blue-500 text-xl">→</span>
+                            <div class="bg-orange-500 text-white px-4 py-2 rounded-lg font-medium">onPause()</div>
+                            <span class="text-blue-500 text-xl">→</span>
+                            <div class="bg-red-500 text-white px-4 py-2 rounded-lg font-medium">onStop()</div>
+                            <span class="text-blue-500 text-xl">→</span>
+                            <div class="bg-red-700 text-white px-4 py-2 rounded-lg font-medium">onDestroy()</div>
+                        </div>
+                    </div>
+
+                    <!-- Complete Lifecycle Implementation -->
+                    <div class="bg-gradient-to-br from-slate-50 to-gray-50 rounded-xl p-6 border border-gray-200">
+                        <h4 class="text-lg font-semibold text-slate-800 mb-4">Complete Activity Lifecycle Implementation</h4>
+                        <div class="bg-slate-900 rounded-lg p-4 code-block">
+                            <pre><code class="language-java">public class MainActivity extends AppCompatActivity {
+    
+    private static final String TAG = "MainActivity";
+    private TextView statusText;
+    private Button navigateButton;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        Log.d(TAG, "onCreate() called");
+        
+        // Initialize UI components
+        statusText = findViewById(R.id.statusText);
+        navigateButton = findViewById(R.id.navigateButton);
+        
+        statusText.setText("Activity Created");
+        
+        // Set up click listeners
+        navigateButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            startActivity(intent);
+        });
+        
+        // Restore saved state if available
+        if (savedInstanceState != null) {
+            String savedText = savedInstanceState.getString("status_text", "");
+            statusText.setText(savedText);
+        }
+    }
+    
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart() called");
+        statusText.setText("Activity Started - Visible to user");
+    }
+    
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume() called");
+        statusText.setText("Activity Resumed - Interacting with user");
+        
+        // Start animations, register listeners
+        // Resume location updates, sensor listeners
+    }
+    
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause() called");
+        statusText.setText("Activity Paused - Lost focus");
+        
+        // Pause animations, save temporary data
+        // Pause location updates to save battery
+    }
+    
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop() called");
+        
+        // Activity no longer visible
+        // Stop network calls, release resources
+    }
+    
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG, "onRestart() called");
+        
+        // Activity is restarting from stopped state
+    }
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy() called");
+        
+        // Clean up resources, unregister listeners
+        // Close database connections, stop background tasks
+    }
+    
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(TAG, "onSaveInstanceState() called");
+        
+        // Save current state
+        outState.putString("status_text", statusText.getText().toString());
+    }
+    
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.d(TAG, "onRestoreInstanceState() called");
+        
+        // Restore saved state
+        String savedText = savedInstanceState.getString("status_text", "");
+        statusText.setText(savedText);
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Creating Multiple Activities -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center text-success font-bold text-sm mr-3">M</span>
+                        Creating Multiple Activities
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 gap-8">
+                        <!-- Second Activity Class -->
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-100">
+                            <h4 class="text-lg font-semibold text-green-800 mb-4">SecondActivity.java</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">public class SecondActivity extends AppCompatActivity {
+    
+    private TextView welcomeText;
+    private Button backButton;
+    private Button resultButton;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
+        
+        // Initialize views
+        welcomeText = findViewById(R.id.welcomeText);
+        backButton = findViewById(R.id.backButton);
+        resultButton = findViewById(R.id.resultButton);
+        
+        // Get data from intent
+        Intent intent = getIntent();
+        String userName = intent.getStringExtra("user_name");
+        int userAge = intent.getIntExtra("user_age", 0);
+        
+        welcomeText.setText("Welcome " + userName + "! Age: " + userAge);
+        
+        // Back button click
+        backButton.setOnClickListener(v -> {
+            finish(); // Close current activity
+        });
+        
+        // Result button click
+        resultButton.setOnClickListener(v -> {
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("result_message", "Task completed successfully!");
+            resultIntent.putExtra("completion_time", System.currentTimeMillis());
+            setResult(RESULT_OK, resultIntent);
+            finish();
+        });
+    }
+    
+    @Override
+    public void onBackPressed() {
+        // Handle back button press
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("result_message", "User pressed back button");
+        setResult(RESULT_CANCELED, resultIntent);
+        super.onBackPressed();
+    }
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Activity Layout -->
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
+                            <h4 class="text-lg font-semibold text-blue-800 mb-4">activity_second.xml</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"&gt;
+
+    &lt;TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Second Activity"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#2563eb"
+        android:layout_marginBottom="32dp"
+        android:textAlignment="center" /&gt;
+
+    &lt;ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_check_circle"
+        android:layout_marginBottom="24dp"
+        android:tint="#10b981" /&gt;
+
+    &lt;Button
+        android:id="@+id/resultButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Complete Task"
+        android:textSize="16sp"
+        android:backgroundTint="#10b981"
+        android:layout_marginBottom="16dp" /&gt;
+
+    &lt;Button
+        android:id="@+id/backButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go Back"
+        android:textSize="16sp"
+        android:backgroundTint="#6b7280" /&gt;
+
+&lt;/LinearLayout&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Manifest Declaration -->
+                    <div class="mt-8 bg-gradient-to-r from-purple-50 to-violet-50 rounded-xl p-6 border border-purple-100">
+                        <h4 class="text-lg font-semibold text-purple-800 mb-4">AndroidManifest.xml Declaration</h4>
+                        <div class="bg-slate-900 rounded-lg p-4 code-block">
+                            <pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myapp"&gt;
+
+    &lt;application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"&gt;
+
+        &lt;!-- Main Activity (Launcher) --&gt;
+        &lt;activity 
+            android:name=".MainActivity"
+            android:exported="true"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.MAIN" /&gt;
+                &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+
+        &lt;!-- Second Activity --&gt;
+        &lt;activity 
+            android:name=".SecondActivity"
+            android:label="Second Activity"
+            android:parentActivityName=".MainActivity"
+            android:exported="false" /&gt;
+
+        &lt;!-- Third Activity with custom theme --&gt;
+        &lt;activity 
+            android:name=".ThirdActivity"
+            android:label="Settings"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="false" /&gt;
+
+    &lt;/application&gt;
+
+&lt;/manifest&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Intents -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center text-warning font-bold text-sm mr-3">I</span>
+                        Connecting Activities with Intents
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 gap-8">
+                        <!-- Explicit Intents -->
+                        <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 border border-blue-100">
+                            <h4 class="text-lg font-semibold text-blue-800 mb-4">Explicit Intents</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">// Basic explicit intent
+Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+startActivity(intent);
+
+// Intent with data
+Intent intentWithData = new Intent(MainActivity.this, SecondActivity.class);
+intentWithData.putExtra("user_name", "John Doe");
+intentWithData.putExtra("user_age", 25);
+intentWithData.putExtra("is_premium", true);
+startActivity(intentWithData);
+
+// Intent for result
+Intent intentForResult = new Intent(MainActivity.this, SecondActivity.class);
+intentForResult.putExtra("task_type", "user_registration");
+startActivityForResult(intentForResult, REQUEST_CODE_REGISTRATION);
+
+// Intent with flags
+Intent intentWithFlags = new Intent(MainActivity.this, SecondActivity.class);
+intentWithFlags.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+intentWithFlags.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+startActivity(intentWithFlags);</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Implicit Intents -->
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-100">
+                            <h4 class="text-lg font-semibold text-green-800 mb-4">Implicit Intents</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">// Open web browser
+Intent webIntent = new Intent(Intent.ACTION_VIEW);
+webIntent.setData(Uri.parse("https://www.google.com"));
+if (webIntent.resolveActivity(getPackageManager()) != null) {
+    startActivity(webIntent);
+}
+
+// Make phone call
+Intent callIntent = new Intent(Intent.ACTION_CALL);
+callIntent.setData(Uri.parse("tel:+1234567890"));
+if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) 
+    == PackageManager.PERMISSION_GRANTED) {
+    startActivity(callIntent);
+}
+
+// Send email
+Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+emailIntent.setData(Uri.parse("mailto:"));
+emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"test@example.com"});
+emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+emailIntent.putExtra(Intent.EXTRA_TEXT, "Email body");
+if (emailIntent.resolveActivity(getPackageManager()) != null) {
+    startActivity(emailIntent);
+}
+
+// Share text
+Intent shareIntent = new Intent(Intent.ACTION_SEND);
+shareIntent.setType("text/plain");
+shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out this app!");
+startActivity(Intent.createChooser(shareIntent, "Share via"));
+
+// Open camera
+Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+    startActivityForResult(cameraIntent, REQUEST_CODE_CAMERA);
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Passing -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center text-danger font-bold text-sm mr-3">D</span>
+                        Passing Data Between Activities
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 gap-8">
+                        <!-- Sending Data -->
+                        <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-6 border border-orange-100">
+                            <h4 class="text-lg font-semibold text-orange-800 mb-4">Sending Data</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">// In MainActivity - sending data
+private void sendDataToSecondActivity() {
+    Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+    
+    // Basic data types
+    intent.putExtra("string_data", "Hello World");
+    intent.putExtra("int_data", 42);
+    intent.putExtra("boolean_data", true);
+    intent.putExtra("double_data", 3.14159);
+    intent.putExtra("long_data", System.currentTimeMillis());
+    
+    // Arrays
+    String[] stringArray = {"Apple", "Banana", "Orange"};
+    intent.putExtra("string_array", stringArray);
+    
+    int[] intArray = {1, 2, 3, 4, 5};
+    intent.putExtra("int_array", intArray);
+    
+    // ArrayList
+    ArrayList&lt;String&gt; stringList = new ArrayList&lt;&gt;();
+    stringList.add("Item 1");
+    stringList.add("Item 2");
+    intent.putStringArrayListExtra("string_list", stringList);
+    
+    // Bundle for complex data
+    Bundle bundle = new Bundle();
+    bundle.putString("user_name", "John Doe");
+    bundle.putInt("user_age", 25);
+    bundle.putBoolean("is_verified", true);
+    intent.putExtras(bundle);
+    
+    // Serializable object
+    User user = new User("Jane", "jane@example.com", 30);
+    intent.putExtra("user_object", user);
+    
+    startActivity(intent);
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Receiving Data -->
+                        <div class="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-6 border border-purple-100">
+                            <h4 class="text-lg font-semibold text-purple-800 mb-4">Receiving Data</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">// In SecondActivity - receiving data
+private void receiveDataFromIntent() {
+    Intent intent = getIntent();
+    
+    if (intent != null) {
+        // Basic data types with default values
+        String stringData = intent.getStringExtra("string_data");
+        int intData = intent.getIntExtra("int_data", 0);
+        boolean booleanData = intent.getBooleanExtra("boolean_data", false);
+        double doubleData = intent.getDoubleExtra("double_data", 0.0);
+        long longData = intent.getLongExtra("long_data", 0L);
+        
+        // Arrays
+        String[] stringArray = intent.getStringArrayExtra("string_array");
+        int[] intArray = intent.getIntArrayExtra("int_array");
+        
+        // ArrayList
+        ArrayList&lt;String&gt; stringList = intent.getStringArrayListExtra("string_list");
+        
+        // Bundle
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            String userName = bundle.getString("user_name");
+            int userAge = bundle.getInt("user_age");
+            boolean isVerified = bundle.getBoolean("is_verified");
+        }
+        
+        // Serializable object
+        User user = (User) intent.getSerializableExtra("user_object");
+        
+        // Check if data exists
+        if (intent.hasExtra("string_data")) {
+            // Data exists, use it
+            displayData(stringData);
+        }
+        
+        // Display received data
+        displayReceivedData(stringData, intData, booleanData);
+    }
+}
+
+private void displayReceivedData(String str, int num, boolean bool) {
+    TextView dataText = findViewById(R.id.dataText);
+    String displayText = "String: " + str + "\n" +
+                        "Number: " + num + "\n" +
+                        "Boolean: " + bool;
+    dataText.setText(displayText);
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Result -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 font-bold text-sm mr-3">A</span>
+                        Getting Result from Child Activity
+                    </h3>
+                    
+                    <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-100">
+                        <h4 class="text-lg font-semibold text-indigo-800 mb-4">Complete Activity Result Implementation</h4>
+                        <div class="bg-slate-900 rounded-lg p-4 code-block">
+                            <pre><code class="language-java">public class MainActivity extends AppCompatActivity {
+    
+    private static final int REQUEST_CODE_USER_INPUT = 1;
+    private static final int REQUEST_CODE_SETTINGS = 2;
+    private static final int REQUEST_CODE_CAMERA = 3;
+    
+    private TextView resultText;
+    private Button inputButton, settingsButton, cameraButton;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        resultText = findViewById(R.id.resultText);
+        inputButton = findViewById(R.id.inputButton);
+        settingsButton = findViewById(R.id.settingsButton);
+        cameraButton = findViewById(R.id.cameraButton);
+        
+        // Start activity for user input
+        inputButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, UserInputActivity.class);
+            intent.putExtra("title", "Enter Your Details");
+            startActivityForResult(intent, REQUEST_CODE_USER_INPUT);
+        });
+        
+        // Start settings activity
+        settingsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivityForResult(intent, REQUEST_CODE_SETTINGS);
+        });
+        
+        // Start camera activity
+        cameraButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivityForResult(intent, REQUEST_CODE_CAMERA);
+            }
+        });
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        
+        switch (requestCode) {
+            case REQUEST_CODE_USER_INPUT:
+                handleUserInputResult(resultCode, data);
+                break;
+                
+            case REQUEST_CODE_SETTINGS:
+                handleSettingsResult(resultCode, data);
+                break;
+                
+            case REQUEST_CODE_CAMERA:
+                handleCameraResult(resultCode, data);
+                break;
+        }
+    }
+    
+    private void handleUserInputResult(int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && data != null) {
+            String userName = data.getStringExtra("user_name");
+            String userEmail = data.getStringExtra("user_email");
+            int userAge = data.getIntExtra("user_age", 0);
+            
+            String result = "User Input Result:\n" +
+                           "Name: " + userName + "\n" +
+                           "Email: " + userEmail + "\n" +
+                           "Age: " + userAge;
+            resultText.setText(result);
+            
+            Toast.makeText(this, "User data received successfully!", 
+                         Toast.LENGTH_SHORT).show();
+        } else if (resultCode == RESULT_CANCELED) {
+            resultText.setText("User input was cancelled");
+        }
+    }
+    
+    private void handleSettingsResult(int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && data != null) {
+            boolean notificationsEnabled = data.getBooleanExtra("notifications", false);
+            String theme = data.getStringExtra("theme");
+            
+            String result = "Settings Result:\n" +
+                           "Notifications: " + (notificationsEnabled ? "Enabled" : "Disabled")
+                           "Notifications: " + (notificationsEnabled ? "Enabled" : "Disabled") + "\n" +
+                           "Theme: " + theme;
+            resultText.setText(result);
+        }
+    }
+    
+    private void handleCameraResult(int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && data != null) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            
+            // Display the image or save it
+            ImageView imageView = findViewById(R.id.capturedImage);
+            imageView.setImageBitmap(imageBitmap);
+            
+            resultText.setText("Camera Result: Image captured successfully");
+        } else {
+            resultText.setText("Camera capture was cancelled");
+        }
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Getting/Setting Data from Layout -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center text-success font-bold text-sm mr-3">G</span>
+                        Getting and Setting Data to/from Layout
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 gap-8">
+                        <!-- Getting Data -->
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-100">
+                            <h4 class="text-lg font-semibold text-green-800 mb-4">Getting Data from Layout</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">public class FormActivity extends AppCompatActivity {
+    
+    private EditText editTextName, editTextEmail, editTextPhone;
+    private CheckBox checkBoxAgree, checkBoxNewsletter;
+    private RadioGroup radioGroupGender;
+    private Spinner spinnerCountry, spinnerLanguage;
+    private SeekBar seekBarAge;
+    private Switch switchNotifications;
+    private RatingBar ratingBar;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_form);
+        
+        initializeViews();
+        setupSpinners();
+        setupListeners();
+    }
+    
+    private void initializeViews() {
+        editTextName = findViewById(R.id.editTextName);
+        editTextEmail = findViewById(R.id.editTextEmail);
+        editTextPhone = findViewById(R.id.editTextPhone);
+        checkBoxAgree = findViewById(R.id.checkBoxAgree);
+        checkBoxNewsletter = findViewById(R.id.checkBoxNewsletter);
+        radioGroupGender = findViewById(R.id.radioGroupGender);
+        spinnerCountry = findViewById(R.id.spinnerCountry);
+        spinnerLanguage = findViewById(R.id.spinnerLanguage);
+        seekBarAge = findViewById(R.id.seekBarAge);
+        switchNotifications = findViewById(R.id.switchNotifications);
+        ratingBar = findViewById(R.id.ratingBar);
+    }
+    
+    private void getAllFormData() {
+        // Get text from EditText
+        String name = editTextName.getText().toString().trim();
+        String email = editTextEmail.getText().toString().trim();
+        String phone = editTextPhone.getText().toString().trim();
+        
+        // Get checkbox states
+        boolean isAgreed = checkBoxAgree.isChecked();
+        boolean wantsNewsletter = checkBoxNewsletter.isChecked();
+        
+        // Get selected radio button
+        int selectedRadioId = radioGroupGender.getCheckedRadioButtonId();
+        String gender = "";
+        if (selectedRadioId != -1) {
+            RadioButton selectedRadio = findViewById(selectedRadioId);
+            gender = selectedRadio.getText().toString();
+        }
+        
+        // Get spinner selections
+        String country = spinnerCountry.getSelectedItem().toString();
+        String language = spinnerLanguage.getSelectedItem().toString();
+        int countryPosition = spinnerCountry.getSelectedItemPosition();
+        
+        // Get SeekBar value
+        int age = seekBarAge.getProgress();
+        
+        // Get Switch state
+        boolean notificationsEnabled = switchNotifications.isChecked();
+        
+        // Get RatingBar value
+        float rating = ratingBar.getRating();
+        
+        // Validate and process data
+        if (validateFormData(name, email, phone, isAgreed)) {
+            processFormData(name, email, phone, gender, country, 
+                          language, age, isAgreed, wantsNewsletter, 
+                          notificationsEnabled, rating);
+        }
+    }
+    
+    private boolean validateFormData(String name, String email, 
+                                   String phone, boolean isAgreed) {
+        if (name.isEmpty()) {
+            editTextName.setError("Name is required");
+            editTextName.requestFocus();
+            return false;
+        }
+        
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTextEmail.setError("Valid email is required");
+            editTextEmail.requestFocus();
+            return false;
+        }
+        
+        if (phone.isEmpty()) {
+            editTextPhone.setError("Phone number is required");
+            editTextPhone.requestFocus();
+            return false;
+        }
+        
+        if (!isAgreed) {
+            Toast.makeText(this, "Please agree to terms and conditions", 
+                         Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        
+        return true;
+    }
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Setting Data -->
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
+                            <h4 class="text-lg font-semibold text-blue-800 mb-4">Setting Data to Layout</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">private void setDataToLayout() {
+    // Set text to TextViews
+    TextView welcomeText = findViewById(R.id.welcomeText);
+    welcomeText.setText("Welcome to Our App!");
+    
+    TextView statusText = findViewById(R.id.statusText);
+    statusText.setText("Status: Active");
+    statusText.setTextColor(ContextCompat.getColor(this, R.color.success_green));
+    
+    // Set text to EditTexts (pre-fill form)
+    editTextName.setText("John Doe");
+    editTextEmail.setText("john.doe@example.com");
+    editTextPhone.setText("+1234567890");
+    
+    // Set hints
+    editTextName.setHint("Enter your full name");
+    editTextEmail.setHint("Enter your email address");
+    
+    // Set checkbox states
+    checkBoxAgree.setChecked(true);
+    checkBoxNewsletter.setChecked(false);
+    
+    // Set radio button selection
+    RadioButton radioButtonMale = findViewById(R.id.radioButtonMale);
+    radioButtonMale.setChecked(true);
+    
+    // Set spinner selection
+    spinnerCountry.setSelection(2); // Select 3rd item (index 2)
+    
+    // Set SeekBar value
+    seekBarAge.setProgress(25);
+    seekBarAge.setMax(100);
+    
+    // Set Switch state
+    switchNotifications.setChecked(true);
+    
+    // Set RatingBar value
+    ratingBar.setRating(4.5f);
+    ratingBar.setNumStars(5);
+    
+    // Set ImageView
+    ImageView profileImage = findViewById(R.id.profileImage);
+    profileImage.setImageResource(R.drawable.default_profile);
+    
+    // Set ProgressBar
+    ProgressBar progressBar = findViewById(R.id.progressBar);
+    progressBar.setProgress(75);
+    progressBar.setMax(100);
+    
+    // Set visibility
+    Button saveButton = findViewById(R.id.saveButton);
+    saveButton.setVisibility(View.VISIBLE);
+    
+    Button cancelButton = findViewById(R.id.cancelButton);
+    cancelButton.setVisibility(View.GONE);
+    
+    // Set enabled/disabled state
+    Button submitButton = findViewById(R.id.submitButton);
+    submitButton.setEnabled(true);
+    
+    // Set background colors
+    LinearLayout mainLayout = findViewById(R.id.mainLayout);
+    mainLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.gray_light));
+}
+
+private void setupSpinners() {
+    // Setup country spinner
+    String[] countries = getResources().getStringArray(R.array.countries);
+    ArrayAdapter&lt;String&gt; countryAdapter = new ArrayAdapter&lt;&gt;(
+        this, android.R.layout.simple_spinner_item, countries);
+    countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    spinnerCountry.setAdapter(countryAdapter);
+    
+    // Setup language spinner
+    List&lt;String&gt; languages = Arrays.asList("English", "Spanish", "French", "German", "Chinese");
+    ArrayAdapter&lt;String&gt; languageAdapter = new ArrayAdapter&lt;&gt;(
+        this, android.R.layout.simple_spinner_item, languages);
+    languageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    spinnerLanguage.setAdapter(languageAdapter);
+}
+
+private void setupListeners() {
+    // SeekBar change listener
+    seekBarAge.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            TextView ageText = findViewById(R.id.ageText);
+            ageText.setText("Age: " + progress);
+        }
+        
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {}
+        
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {}
+    });
+    
+    // RatingBar change listener
+    ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+        @Override
+        public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+            TextView ratingText = findViewById(R.id.ratingText);
+            ratingText.setText("Rating: " + rating + "/5");
+        }
+    });
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Unit 5: Fragments, Menus and Dialogs -->
+        <section id="unit5" class="mb-20">
+            <div class="bg-white/70  rounded-2xl  border border-white/20 p-8">
+                <div class="flex items-center mb-8">
+                    <div class="w-12 h-12 bg-warning rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4">5</div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-primary">UI Fragments, Menus and Dialogs</h2>
+                        <p class="text-slate-600">Modular UI components and user interactions • 6 Hours</p>
+                    </div>
+                </div>
+
+                <!-- Fragments Introduction -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center text-accent font-bold text-sm mr-3">F</span>
+                        Introduction to Fragments
+                    </h3>
+                    
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 mb-8 border border-blue-100">
+                        <div class="grid md:grid-cols-1 gap-6">
+                            <div>
+                                <h4 class="text-lg font-semibold text-blue-800 mb-3">What is a Fragment?</h4>
+                                <ul class="text-blue-700 space-y-2 text-sm">
+                                    <li>• Reusable portion of your app's UI</li>
+                                    <li>• Has its own lifecycle tied to host activity</li>
+                                    <li>• Can be combined to build multi-pane UIs</li>
+                                    <li>• Perfect for tablets and different screen sizes</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-blue-800 mb-3">Benefits</h4>
+                                <ul class="text-blue-700 space-y-2 text-sm">
+                                    <li>• Modular and reusable components</li>
+                                    <li>• Better organization of complex UIs</li>
+                                    <li>• Dynamic UI changes at runtime</li>
+                                    <li>• Optimized for different screen sizes</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fragment Lifecycle -->
+                    <div class="bg-gradient-to-r from-purple-50 to-violet-50 rounded-xl p-6 mb-8 border border-purple-100">
+                        <h4 class="text-lg font-semibold text-purple-800 mb-4">Fragment Lifecycle</h4>
+                        <div class="flex flex-wrap justify-center items-center gap-3 text-sm mb-6">
+                            <div class="bg-purple-500 text-white px-3 py-2 rounded-lg">onAttach()</div>
+                            <span class="text-purple-500">→</span>
+                            <div class="bg-purple-500 text-white px-3 py-2 rounded-lg">onCreate()</div>
+                            <span class="text-purple-500">→</span>
+                            <div class="bg-blue-500 text-white px-3 py-2 rounded-lg font-bold">onCreateView()</div>
+                            <span class="text-purple-500">→</span>
+                            <div class="bg-green-500 text-white px-3 py-2 rounded-lg font-bold">onViewCreated()</div>
+                            <span class="text-purple-500">→</span>
+                            <div class="bg-green-500 text-white px-3 py-2 rounded-lg">onStart()</div>
+                            <span class="text-purple-500">→</span>
+                            <div class="bg-green-500 text-white px-3 py-2 rounded-lg">onResume()</div>
+                        </div>
+                        
+                        <div class="bg-slate-900 rounded-lg p-4 code-block">
+                            <pre><code class="language-java">public class ProfileFragment extends Fragment {
+    
+    private TextView textViewName, textViewEmail;
+    private EditText editTextBio;
+    private Button buttonSave, buttonEdit;
+    private ImageView imageViewProfile;
+    
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        Log.d("ProfileFragment", "onAttach() called");
+        // Fragment attached to activity
+    }
+    
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d("ProfileFragment", "onCreate() called");
+        // Initialize non-UI components
+        // Get arguments passed to fragment
+        if (getArguments() != null) {
+            String userId = getArguments().getString("user_id");
+            // Load user data
+        }
+    }
+    
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, 
+                           @Nullable ViewGroup container, 
+                           @Nullable Bundle savedInstanceState) {
+        Log.d("ProfileFragment", "onCreateView() called");
+        // Create and return fragment's UI
+        return inflater.inflate(R.layout.fragment_profile, container, false);
+    }
+    
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Log.d("ProfileFragment", "onViewCreated() called");
+        
+        // Initialize UI components after view is created
+        initializeViews(view);
+        setupClickListeners();
+        loadUserProfile();
+    }
+    
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("ProfileFragment", "onStart() called");
+        // Fragment becomes visible
+    }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("ProfileFragment", "onResume() called");
+        // Fragment starts interacting with user
+    }
+    
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("ProfileFragment", "onPause() called");
+        // Fragment loses focus
+        saveUserChanges();
+    }
+    
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d("ProfileFragment", "onStop() called");
+        // Fragment no longer visible
+    }
+    
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d("ProfileFragment", "onDestroyView() called");
+        // Fragment's UI is destroyed
+    }
+    
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("ProfileFragment", "onDestroy() called");
+        // Fragment is destroyed
+    }
+    
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.d("ProfileFragment", "onDetach() called");
+        // Fragment detached from activity
+    }
+    
+    private void initializeViews(View view) {
+        textViewName = view.findViewById(R.id.textViewName);
+        textViewEmail = view.findViewById(R.id.textViewEmail);
+        editTextBio = view.findViewById(R.id.editTextBio);
+        buttonSave = view.findViewById(R.id.buttonSave);
+        buttonEdit = view.findViewById(R.id.buttonEdit);
+        imageViewProfile = view.findViewById(R.id.imageViewProfile);
+    }
+    
+    private void setupClickListeners() {
+        buttonSave.setOnClickListener(v -> saveProfile());
+        buttonEdit.setOnClickListener(v -> enableEditing());
+        imageViewProfile.setOnClickListener(v -> changeProfilePicture());
+    }
+    
+    private void loadUserProfile() {
+        // Load user profile data
+        textViewName.setText("John Doe");
+        textViewEmail.setText("john.doe@example.com");
+        editTextBio.setText("Software Developer passionate about mobile apps");
+    }
+    
+    private void saveProfile() {
+        String bio = editTextBio.getText().toString();
+        // Save profile changes
+        Toast.makeText(getContext(), "Profile saved successfully!", 
+                     Toast.LENGTH_SHORT).show();
+    }
+    
+    private void enableEditing() {
+        editTextBio.setEnabled(true);
+        editTextBio.requestFocus();
+        buttonSave.setVisibility(View.VISIBLE);
+    }
+    
+    private void changeProfilePicture() {
+        // Open image picker or camera
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, 100);
+    }
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Fragment Layout -->
+                    <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-100">
+                        <h4 class="text-lg font-semibold text-green-800 mb-4">Fragment Layout (fragment_profile.xml)</h4>
+                        <div class="bg-slate-900 rounded-lg p-4 code-block">
+                            <pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"&gt;
+
+    &lt;LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"&gt;
+
+        &lt;!-- Profile Image --&gt;
+        &lt;ImageView
+            android:id="@+id/imageViewProfile"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/default_profile"
+            android:scaleType="centerCrop"
+            android:background="@drawable/circle_background"
+            android:layout_marginBottom="24dp"
+            android:clickable="true"
+            android:focusable="true" /&gt;
+
+        &lt;!-- Name --&gt;
+        &lt;TextView
+            android:id="@+id/textViewName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Name"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#1f2937"
+            android:layout_marginBottom="8dp" /&gt;
+
+        &lt;!-- Email --&gt;
+        &lt;TextView
+            android:id="@+id/textViewEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="user@example.com"
+            android:textSize="16sp"
+            android:textColor="#6b7280"
+            android:layout_marginBottom="24dp" /&gt;
+
+        &lt;!-- Bio Section --&gt;
+        &lt;TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bio"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#1f2937"
+            android:layout_marginBottom="8dp" /&gt;
+
+        &lt;!-- EditText
+            android:id="@+id/editTextBio"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:hint="Tell us about yourself..."
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
+            android:background="@drawable/edittext_background"
+            android:padding="12dp"
+            android:enabled="false"
+            android:layout_marginBottom="24dp" /&gt;
+
+        &lt;!-- Buttons --&gt;
+        &lt;LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"&gt;
+
+            &lt;Button
+                android:id="@+id/buttonEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Edit Profile"
+                android:backgroundTint="#3b82f6"
+                android:layout_marginEnd="8dp" /&gt;
+
+            &lt;Button
+                android:id="@+id/buttonSave"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Save Changes"
+                android:backgroundTint="#10b981"
+                android:visibility="gone"
+                android:layout_marginStart="8dp" /&gt;
+
+        &lt;/LinearLayout&gt;
+
+    &lt;/LinearLayout&gt;
+
+&lt;/ScrollView&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fragment Manager -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center text-success font-bold text-sm mr-3">M</span>
+                        Fragment Manager
+                    </h3>
+                    
+                    <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-6 border border-orange-100">
+                        <h4 class="text-lg font-semibold text-orange-800 mb-4">Using FragmentManager</h4>
+                        <div class="bg-slate-900 rounded-lg p-4 code-block">
+                            <pre><code class="language-java">public class MainActivity extends AppCompatActivity {
+    
+    private Button btnProfile, btnSettings, btnAbout;
+    private FrameLayout fragmentContainer;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        btnProfile = findViewById(R.id.btnProfile);
+        btnSettings = findViewById(R.id.btnSettings);
+        btnAbout = findViewById(R.id.btnAbout);
+        fragmentContainer = findViewById(R.id.fragment_container);
+        
+        // Load default fragment
+        if (savedInstanceState == null) {
+            loadProfileFragment();
+        }
+        
+        setupButtonListeners();
+    }
+    
+    private void setupButtonListeners() {
+        btnProfile.setOnClickListener(v -> loadProfileFragment());
+        btnSettings.setOnClickListener(v -> loadSettingsFragment());
+        btnAbout.setOnClickListener(v -> loadAboutFragment());
+    }
+    
+    private void loadProfileFragment() {
+        ProfileFragment fragment = new ProfileFragment();
+        
+        // Pass data to fragment using Bundle
+        Bundle args = new Bundle();
+        args.putString("user_id", "12345");
+        args.putString("user_name", "John Doe");
+        fragment.setArguments(args);
+        
+        getSupportFragmentManager()
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragment, "ProfileFragment")
+            .commit();
+            
+        updateButtonStates(btnProfile);
+    }
+    
+    private void loadSettingsFragment() {
+        SettingsFragment fragment = new SettingsFragment();
+        
+        getSupportFragmentManager()
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragment, "SettingsFragment")
+            .addToBackStack("SettingsFragment") // Add to back stack
+            .commit();
+            
+        updateButtonStates(btnSettings);
+    }
+    
+    private void loadAboutFragment() {
+        AboutFragment fragment = new AboutFragment();
+        
+        getSupportFragmentManager()
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragment, "AboutFragment")
+            .addToBackStack("AboutFragment")
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE) // Add transition
+            .commit();
+            
+        updateButtonStates(btnAbout);
+    }
+    
+    private void updateButtonStates(Button activeButton) {
+        // Reset all buttons
+        btnProfile.setBackgroundTint(ContextCompat.getColorStateList(this, R.color.gray_light));
+        btnSettings.setBackgroundTint(ContextCompat.getColorStateList(this, R.color.gray_light));
+        btnAbout.setBackgroundTint(ContextCompat.getColorStateList(this, R.color.gray_light));
+        
+        // Highlight active button
+        activeButton.setBackgroundTint(ContextCompat.getColorStateList(this, R.color.accent_color));
+    }
+    
+    // Handle fragment communication
+    public void onFragmentInteraction(String action, Bundle data) {
+        switch (action) {
+            case "profile_updated":
+                String newName = data.getString("name");
+                Toast.makeText(this, "Profile updated: " + newName, Toast.LENGTH_SHORT).show();
+                break;
+                
+            case "settings_changed":
+                boolean notificationsEnabled = data.getBoolean("notifications");
+                // Handle settings change
+                break;
+        }
+    }
+    
+    @Override
+    public void onBackPressed() {
+        // Handle back button for fragments
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menus -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center text-warning font-bold text-sm mr-3">M</span>
+                        Menus
+                    </h3>
+                    
+                    <div class="grid lg:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-green-50 rounded-xl p-6 border border-green-100">
+                            <h4 class="text-lg font-semibold text-green-800 mb-3">Options Menu</h4>
+                            <p class="text-green-700 text-sm mb-3">Top action bar menu for primary actions</p>
+                            <div class="bg-green-100 rounded-lg p-2">
+                                <code class="text-xs text-green-800">onCreateOptionsMenu()</code>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-orange-50 rounded-xl p-6 border border-orange-100">
+                            <h4 class="text-lg font-semibold text-orange-800 mb-3">Context Menu</h4>
+                            <p class="text-orange-700 text-sm mb-3">Appears on long press for item-specific actions</p>
+                            <div class="bg-orange-100 rounded-lg p-2">
+                                <code class="text-xs text-orange-800">registerForContextMenu()</code>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-purple-50 rounded-xl p-6 border border-purple-100">
+                            <h4 class="text-lg font-semibold text-purple-800 mb-3">Popup Menu</h4>
+                            <p class="text-purple-700 text-sm mb-3">Anchored to specific view for overflow actions</p>
+                            <div class="bg-purple-100 rounded-lg p-2">
+                                <code class="text-xs text-purple-800">PopupMenu</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Menu Resource -->
+                    <div class="grid grid-cols-1 gap-8 mb-8">
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
+                            <h4 class="text-lg font-semibold text-blue-800 mb-4">Menu Resource (res/menu/main_menu.xml)</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"&gt;
+
+    &lt;item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title="Search"
+        app:showAsAction="ifRoom|withText" /&gt;
+
+    &lt;item
+        android:id="@+id/action_refresh"
+        android:icon="@drawable/ic_refresh"
+        android:title="Refresh"
+        app:showAsAction="ifRoom" /&gt;
+
+    &lt;item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="Settings"
+        app:showAsAction="never" /&gt;
+
+    &lt;item
+        android:id="@+id/action_help"
+        android:icon="@drawable/ic_help"
+        android:title="Help"
+        app:showAsAction="never" /&gt;
+
+    &lt;item
+        android:id="@+id/action_about"
+        android:title="About"
+        app:showAsAction="never" /&gt;
+
+&lt;/menu&gt;</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-100">
+                            <h4 class="text-lg font-semibold text-green-800 mb-4">Options Menu Implementation</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">public class MainActivity extends AppCompatActivity {
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        
+        // Customize menu items if needed
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        if (searchView != null) {
+            searchView.setQueryHint("Search items...");
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    performSearch(query);
+                    return true;
+                }
+                
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    filterResults(newText);
+                    return true;
+                }
+            });
+        }
+        
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                // Search action
+                openSearchDialog();
+                return true;
+                
+            case R.id.action_refresh:
+                // Refresh action
+                refreshData();
+                return true;
+                
+            case R.id.action_settings:
+                // Open settings activity
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
+                return true;
+                
+            case R.id.action_help:
+                // Show help dialog
+                showHelpDialog();
+                return true;
+                
+            case R.id.action_about:
+                // Show about dialog
+                showAboutDialog();
+                return true;
+                
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    
+    private void performSearch(String query) {
+        Toast.makeText(this, "Searching for: " + query, Toast.LENGTH_SHORT).show();
+        // Implement search functionality
+    }
+    
+    private void filterResults(String query) {
+        // Filter results as user types
+    }
+    
+    private void refreshData() {
+        Toast.makeText(this, "Refreshing data...", Toast.LENGTH_SHORT).show();
+        // Implement refresh functionality
+    }
+    
+    private void showHelpDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Help")
+               .setMessage("This is the help information for using the app.")
+               .setPositiveButton("OK", null)
+               .show();
+    }
+    
+    private void showAboutDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("About")
+               .setMessage("My App Version 1.0\nDeveloped by Your Name")
+               .setPositiveButton("OK", null)
+               .show();
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Context Menu -->
+                    <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-6 border border-orange-100">
+                        <h4 class="text-lg font-semibold text-orange-800 mb-4">Context Menu Implementation</h4>
+                        <div class="bg-slate-900 rounded-lg p-4 code-block">
+                            <pre><code class="language-java">public class MainActivity extends AppCompatActivity {
+    
+    private ListView listView;
+    private TextView selectedItemText;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        listView = findViewById(R.id.listView);
+        selectedItemText = findViewById(R.id.selectedItemText);
+        
+        // Register ListView for context menu
+        registerForContextMenu(listView);
+        
+        // Setup ListView with data
+        String[] items = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
+        ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;&gt;(
+            this, android.R.layout.simple_list_item_1, items);
+        listView.setAdapter(adapter);
+    }
+    
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, 
+                                  ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        
+        if (v.getId() == R.id.listView) {
+            // Get selected item info
+            AdapterView.AdapterContextMenuInfo info = 
+                (AdapterView.AdapterContextMenuInfo) menuInfo;
+            String selectedItem = (String) listView.getItemAtPosition(info.position);
+            
+            // Set context menu title
+            menu.setHeaderTitle("Options for " + selectedItem);
+            
+            // Inflate context menu
+            getMenuInflater().inflate(R.menu.context_menu, menu);
+        }
+    }
+    
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = 
+            (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        String selectedItem = (String) listView.getItemAtPosition(info.position);
+        
+        switch (item.getItemId()) {
+            case R.id.action_edit:
+                editItem(selectedItem, info.position);
+                return true;
+                
+            case R.id.action_delete:
+                deleteItem(selectedItem, info.position);
+                return true;
+                
+            case R.id.action_share:
+                shareItem(selectedItem);
+                return true;
+                
+            case R.id.action_copy:
+                copyItem(selectedItem);
+                return true;
+                
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+    
+    private void editItem(String item, int position) {
+        Toast.makeText(this, "Edit: " + item, Toast.LENGTH_SHORT).show();
+        // Implement edit functionality
+    }
+    
+    private void deleteItem(String item, int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete Item")
+               .setMessage("Are you sure you want to delete '" + item + "'?")
+               .setPositiveButton("Delete", (dialog, which) -> {
+                   Toast.makeText(MainActivity.this, "Deleted: " + item, 
+                                Toast.LENGTH_SHORT).show();
+                   // Remove item from adapter
+               })
+               .setNegativeButton("Cancel", null)
+               .show();
+    }
+    
+    private void shareItem(String item) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out this item: " + item);
+        startActivity(Intent.createChooser(shareIntent, "Share via"));
+    }
+    
+    private void copyItem(String item) {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("Copied Item", item);
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(this, "Copied: " + item, Toast.LENGTH_SHORT).show();
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dialogs -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center text-danger font-bold text-sm mr-3">D</span>
+                        Dialogs
+                    </h3>
+                    
+                    <div class="bg-gradient-to-r from-red-50 to-pink-50 rounded-xl p-6 mb-8 border border-red-100">
+                        <div class="grid md:grid-cols-1 gap-6">
+                            <div>
+                                <h4 class="text-lg font-semibold text-red-800 mb-3">What are Dialogs?</h4>
+                                <ul class="text-red-700 space-y-2 text-sm">
+                                    <li>• Small windows that prompt user for decision</li>
+                                    <li>• Used for additional information or confirmation</li>
+                                    <li>• Should not interrupt the main workflow</li>
+                                    <li>• Can be modal or non-modal</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-red-800 mb-3">Best Practices</h4>
+                                <ul class="text-red-700 space-y-2 text-sm">
+                                    <li>• Use DialogFragment instead of Dialog directly</li>
+                                    <li>• Handle configuration changes properly</li>
+                                    <li>• Provide clear action buttons</li>
+                                    <li>• Keep content concise and focused</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dialog Fragment -->
+                    <div class="grid grid-cols-1 gap-8">
+                        <div class="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-6 border border-purple-100">
+                            <h4 class="text-lg font-semibold text-purple-800 mb-4">Custom Dialog Fragment</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">public class CustomDialogFragment extends DialogFragment {
+    
+    public interface DialogListener {
+        void onDialogPositiveClick(String name, String email);
+        void onDialogNegativeClick();
+    }
+    
+    private DialogListener listener;
+    private EditText editTextName, editTextEmail;
+    private CheckBox checkBoxNewsletter;
+    
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        try {
+            listener = (DialogListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + 
+                " must implement DialogListener");
+        }
+    }
+    
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        
+        // Get the layout inflater
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
+        View view = inflater.inflate(R.layout.dialog_custom, null);
+        
+        // Initialize views
+        editTextName = view.findViewById(R.id.editTextName);
+        editTextEmail = view.findViewById(R.id.editTextEmail);
+        checkBoxNewsletter = view.findViewById(R.id.checkBoxNewsletter);
+        
+        // Get arguments if any
+        Bundle args = getArguments();
+        if (args != null) {
+            String title = args.getString("title", "Enter Information");
+            String defaultName = args.getString("default_name", "");
+            editTextName.setText(defaultName);
+        }
+        
+        builder.setView(view)
+               .setTitle("User Registration")
+               .setIcon(R.drawable.ic_person_add)
+               .setPositiveButton("Register", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int id) {
+                       String name = editTextName.getText().toString().trim();
+                       String email = editTextEmail.getText().toString().trim();
+                       
+                       if (validateInput(name, email)) {
+                           listener.onDialogPositiveClick(name, email);
+                       }
+                   }
+               })
+               .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int id) {
+                       listener.onDialogNegativeClick();
+                   }
+               })
+               .setNeutralButton("Clear", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int id) {
+                       clearFields();
+                   }
+               });
+               
+        return builder.create();
+    }
+    
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Customize dialog appearance
+        Dialog dialog = getDialog();
+        if (dialog != null) {
+            dialog.getWindow().setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            );
+        }
+    }
+    
+    private boolean validateInput(String name, String email) {
+        if (name.isEmpty()) {
+            editTextName.setError("Name is required");
+            return false;
+        }
+        
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTextEmail.setError("Valid email is required");
+            return false;
+        }
+        
+        return true;
+    }
+    
+    private void clearFields() {
+        editTextName.setText("");
+        editTextEmail.setText("");
+        checkBoxNewsletter.setChecked(false);
+    }
+    
+    // Static method to create dialog with arguments
+    public static CustomDialogFragment newInstance(String title, String defaultName) {
+        CustomDialogFragment fragment = new CustomDialogFragment();
+        Bundle args = new Bundle();
+        args.putString("title", title);
+        args.putString("default_name", defaultName);
+        fragment.setArguments(args);
+        return fragment;
+    }
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
+                            <h4 class="text-lg font-semibold text-blue-800 mb-4">Using Dialog in Activity</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">public class MainActivity extends AppCompatActivity 
+    implements CustomDialogFragment.DialogListener {
+    
+    private Button btnShowDialog, btnShowAlert, btnShowList;
+    private TextView resultText;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        btnShowDialog = findViewById(R.id.btnShowDialog);
+        btnShowAlert = findViewById(R.id.btnShowAlert);
+        btnShowList = findViewById(R.id.btnShowList);
+        resultText = findViewById(R.id.resultText);
+        
+        btnShowDialog.setOnClickListener(v -> showCustomDialog());
+        btnShowAlert.setOnClickListener(v -> showAlertDialog());
+        btnShowList.setOnClickListener(v -> showListDialog());
+    }
+    
+    private void showCustomDialog() {
+        CustomDialogFragment dialog = CustomDialogFragment.newInstance(
+            "User Registration", "John Doe");
+        dialog.show(getSupportFragmentManager(), "CustomDialog");
+    }
+    
+    private void showAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Confirmation")
+               .setMessage("Are you sure you want to delete all data?")
+               .setIcon(R.drawable.ic_warning)
+               .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       resultText.setText("Data deleted successfully");
+                       Toast.makeText(MainActivity.this, "All data deleted", 
+                                    Toast.LENGTH_SHORT).show();
+                   }
+               })
+               .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       resultText.setText("Delete operation cancelled");
+                       dialog.dismiss();
+                   }
+               })
+               .setCancelable(false) // Prevent dismissing by touching outside
+               .show();
+    }
+    
+    private void showListDialog() {
+        String[] colors = {"Red", "Green", "Blue", "Yellow", "Purple", "Orange"};
+        
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose a color")
+               .setItems(colors, new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       String selectedColor = colors[which];
+                       resultText.setText("Selected color: " + selectedColor);
+                       Toast.makeText(MainActivity.this, 
+                                    "You chose: " + selectedColor, 
+                                    Toast.LENGTH_SHORT).show();
+                   }
+               })
+               .show();
+    }
+    
+    private void showSingleChoiceDialog() {
+        String[] options = {"Option 1", "Option 2", "Option 3"};
+        int checkedItem = 0; // Default selection
+        
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Select an option")
+               .setSingleChoiceItems(options, checkedItem, 
+                   new DialogInterface.OnClickListener() {
+                       @Override
+                       public void onClick(DialogInterface dialog, int which) {
+                           // Handle selection
+                       }
+                   })
+               .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       // Handle OK button
+                   }
+               })
+               .setNegativeButton("Cancel", null)
+               .show();
+    }
+    
+    // Implement DialogListener interface
+    @Override
+    public void onDialogPositiveClick(String name, String email) {
+        String result = "Registration successful!\n" +
+                       "Name: " + name + "\n" +
+                       "Email: " + email;
+        resultText.setText(result);
+        Toast.makeText(this, "Welcome " + name + "!", Toast.LENGTH_SHORT).show();
+    }
+    
+    @Override
+    public void onDialogNegativeClick() {
+        resultText.setText("Registration cancelled");
+        Toast.makeText(this, "Registration cancelled", Toast.LENGTH_SHORT).show();
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dialog Layout -->
+                    <div class="mt-8 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-100">
+                        <h4 class="text-lg font-semibold text-green-800 mb-4">Dialog Layout (dialog_custom.xml)</h4>
+                        <div class="bg-slate-900 rounded-lg p-4 code-block">
+                            <pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"&gt;
+
+    &lt;TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please fill in your details:"
+        android:textSize="16sp"
+        android:textColor="#374151"
+        android:layout_marginBottom="16dp" /&gt;
+
+    &lt;com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="Full Name"&gt;
+
+        &lt;com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" /&gt;
+
+    &lt;/com.google.android.material.textfield.TextInputLayout&gt;
+
+    &lt;com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="Email Address"&gt;
+
+        &lt;com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" /&gt;
+
+    &lt;/com.google.android.material.textfield.TextInputLayout&gt;
+
+    &lt;CheckBox
+        android:id="@+id/checkBoxNewsletter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subscribe to newsletter"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp" /&gt;
+
+&lt;/LinearLayout&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Unit 6: Lists and Views -->
+        <section id="unit6" class="mb-20">
+            <div class="bg-white/70  rounded-2xl  border border-white/20 p-8">
+                <div class="flex items-center mb-8">
+                    <div class="w-12 h-12 bg-danger rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4">6</div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-primary">ListView, GridView and RecyclerView</h2>
+                        <p class="text-slate-600">Displaying collections of data efficiently • 6 Hours</p>
+                    </div>
+                </div>
+
+                <!-- Comparison Overview -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center text-accent font-bold text-sm mr-3">C</span>
+                        View Comparison Overview
+                    </h3>
+                    
+                    <div class="overflow-x-auto bg-gradient-to-r from-slate-50 to-gray-50 rounded-xl p-6 border border-gray-200">
+                        <table class="w-full border-collapse">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="border border-gray-300 p-4 text-left font-semibold text-gray-800">Feature</th>
+                                    <th class="border border-gray-300 p-4 text-left font-semibold text-blue-800">ListView</th>
+                                    <th class="border border-gray-300 p-4 text-left font-semibold text-green-800">GridView</th>
+                                    <th class="border border-gray-300 p-4 text-left font-semibold text-purple-800">RecyclerView</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm">
+                                <tr class="bg-white">
+                                    <td class="border border-gray-300 p-4 font-medium">Layout Type</td>
+                                    <td class="border border-gray-300 p-4">Vertical list only</td>
+                                    <td class="border border-gray-300 p-4">2D grid layout</td>
+                                    <td class="border border-gray-300 p-4">Linear, Grid, Staggered</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="border border-gray-300 p-4 font-medium">Performance</td>
+                                    <td class="border border-gray-300 p-4">Good with ViewHolder</td>
+                                    <td class="border border-gray-300 p-4">Good with ViewHolder</td>
+                                    <td class="border border-gray-300 p-4 text-green-600 font-semibold">Excellent (mandatory ViewHolder)</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="border border-gray-300 p-4 font-medium">Flexibility</td>
+                                    <td class="border border-gray-300 p-4">Limited</td>
+                                    <td class="border border-gray-300 p-4">Limited</td>
+                                    <td class="border border-gray-300 p-4 text-green-600 font-semibold">Highly flexible</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="border border-gray-300 p-4 font-medium">Animations</td>
+                                    <td class="border border-gray-300 p-4">Manual implementation</td>
+                                    <td class="border border-gray-300 p-4">Manual implementation</td>
+                                    <td class="border border-gray-300 p-4 text-green-600 font-semibold">Built-in animations</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="border border-gray-300 p-4 font-medium">Recommendation</td>
+                                    <td class="border border-gray-300 p-4 text-orange-600">Legacy (use for simple lists)</td>
+                                    <td class="border border-gray-300 p-4 text-orange-600">Legacy (use for simple grids)</td>
+                                    <td class="border border-gray-300 p-4 text-green-600 font-semibold">Modern choice</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ListView -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center text-accent font-bold text-sm mr-3">L</span>
+                        ListView
+                    </h3>
+                    
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 mb-8 border border-blue-100">
+                        <div class="grid md:grid-cols-1 gap-6">
+                            <div>
+                                <h4 class="text-lg font-semibold text-blue-800 mb-3">Features</h4>
+                                <ul class="text-blue-700 space-y-2 text-sm">
+                                    <li>• Displays scrollable list of items vertically</li>
+                                    <li>• Uses adapters to bind data to views</li>
+                                    <li>• Built-in click and long-click listeners</li>
+                                    <li>• Automatic view recycling for performance</li>
+                                    <li>• Support for headers and footers</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-blue-800 mb-3">Use Cases</h4>
+                                <ul class="text-blue-700 space-y-2 text-sm">
+                                    <li>• Contact lists</li>
+                                    <li>• Message conversations</li>
+                                    <li>• Menu items</li>
+                                    <li>• News articles</li>
+                                    <li>• Settings options</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Simple ListView -->
+                    <div class="grid grid-cols-1 gap-8 mb-8">
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-100">
+                            <h4 class="text-lg font-semibold text-green-800 mb-4">Simple ListView with ArrayAdapter</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">public class SimpleListActivity extends AppCompatActivity {
+    
+    private ListView listView;
+    private String[] fruits = {
+        "Apple", "Banana", "Orange", "Mango", "Grapes",
+        "Strawberry", "Pineapple", "Watermelon", "Kiwi", "Peach"
+    };
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_simple_list);
+        
+        listView = findViewById(R.id.listView);
+        
+        // Create ArrayAdapter
+        ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;&gt;(
+            this, 
+            android.R.layout.simple_list_item_1, 
+            fruits
+        );
+        
+        // Set adapter to ListView
+        listView.setAdapter(adapter);
+        
+        // Handle item clicks
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView&lt;?&gt; parent, View view, 
+                                  int position, long id) {
+                String selectedFruit = fruits[position];
+                Toast.makeText(SimpleListActivity.this, 
+                             "Selected: " + selectedFruit, 
+                             Toast.LENGTH_SHORT).show();
+            }
+        });
+        
+        // Handle long clicks
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView&lt;?&gt; parent, View view, 
+                                         int position, long id) {
+                String selectedFruit = fruits[position];
+                showDeleteDialog(selectedFruit, position);
+                return true; // Consume the long click event
+            }
+        });
+    }
+    
+    private void showDeleteDialog(String fruit, int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete Item")
+               .setMessage("Do you want to delete " + fruit + "?")
+               .setPositiveButton("Delete", (dialog, which) -> {
+                   // Remove item from array and update adapter
+                   Toast.makeText(this, fruit + " deleted", Toast.LENGTH_SHORT).show();
+               })
+               .setNegativeButton("Cancel", null)
+               .show();
+    }
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-100">
+                            <h4 class="text-lg font-semibold text-green-800 mb-4">Custom ListView with BaseAdapter</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">public class CustomListAdapter extends BaseAdapter {
+    
+    private Context context;
+    private List&lt;Contact&gt; contacts;
+    private LayoutInflater inflater;
+    
+    public CustomListAdapter(Context context, List&lt;Contact&gt; contacts) {
+        this.context = context;
+        this.contacts = contacts;
+        this.inflater = LayoutInflater.from(context);
+    }
+    
+    @Override
+    public int getCount() {
+        return contacts.size();
+    }
+    
+    @Override
+    public Object getItem(int position) {
+        return contacts.get(position);
+    }
+    
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+    
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
+        
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.list_item_contact, parent, false);
+            holder = new ViewHolder();
+            holder.nameText = convertView.findViewById(R.id.textName);
+            holder.phoneText = convertView.findViewById(R.id.textPhone);
+            holder.emailText = convertView.findViewById(R.id.textEmail);
+            holder.profileImage = convertView.findViewById(R.id.imageProfile);
+            holder.callButton = convertView.findViewById(R.id.buttonCall);
+            
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+        
+        Contact contact = contacts.get(position);
+        holder.nameText.setText(contact.getName());
+        holder.phoneText.setText(contact.getPhone());
+        holder.emailText.setText(contact.getEmail());
+        
+        // Load profile image (using placeholder for demo)
+        holder.profileImage.setImageResource(R.drawable.default_profile);
+        
+        // Handle call button click
+        holder.callButton.setOnClickListener(v -> {
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:" + contact.getPhone()));
+            context.startActivity(callIntent);
+        });
+        
+        return convertView;
+    }
+    
+    static class ViewHolder {
+        TextView nameText, phoneText, emailText;
+        ImageView profileImage;
+        Button callButton;
+    }
+}
+
+// Contact model class
+public class Contact {
+    private String name, phone, email;
+    
+    public Contact(String name, String phone, String email) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+    }
+    
+    // Getters and setters
+    public String getName() { return name; }
+    public String getPhone() { return phone; }
+    public String getEmail() { return email; }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Custom List Item Layout -->
+                    <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-6 border border-orange-100">
+                        <h4 class="text-lg font-semibold text-orange-800 mb-4">Custom List Item Layout (list_item_contact.xml)</h4>
+                        <div class="bg-slate-900 rounded-lg p-4 code-block">
+                            <pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:background="?android:attr/selectableItemBackground"&gt;
+
+    &lt;ImageView
+        android:id="@+id/imageProfile"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/default_profile"
+        android:scaleType="centerCrop"
+        android:background="@drawable/circle_background"
+        android:layout_marginEnd="16dp" /&gt;
+
+    &lt;LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical"&gt;
+
+        &lt;TextView
+            android:id="@+id/textName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contact Name"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#1f2937" /&gt;
+
+        &lt;TextView
+            android:id="@+id/textPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+1234567890"
+            android:textSize="14sp"
+            android:textColor="#6b7280"
+            android:layout_marginTop="4dp" /&gt;
+
+        &lt;TextView
+            android:id="@+id/textEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="contact@example.com"
+            android:textSize="14sp"
+            android:textColor="#6b7280"
+            android:layout_marginTop="2dp" /&gt;
+
+    &lt;/LinearLayout&gt;
+
+    &lt;Button
+        android:id="@+id/buttonCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Call"
+        android:textSize="12sp"
+        android:backgroundTint="#10b981"
+        android:layout_gravity="center_vertical" /&gt;
+
+&lt;/LinearLayout&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GridView Implementation -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center text-success font-bold text-sm mr-3">G</span>
+                        GridView Implementation
+                    </h3>
+                    
+                    <div class="grid lg:grid-cols-1 gap-8">
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-100">
+                            <h4 class="text-lg font-semibold text-green-800 mb-4">GridView with Image Gallery</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">public class ImageGridActivity extends AppCompatActivity {
+    
+    private GridView gridView;
+    private int[] imageIds = {
+        R.drawable.image1, R.drawable.image2, R.drawable.image3,
+        R.drawable.image4, R.drawable.image5, R.drawable.image6,
+        R.drawable.image7, R.drawable.image8, R.drawable.image9
+    };
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_image_grid);
+        
+        gridView = findViewById(R.id.gridView);
+        
+        // Create custom adapter
+        ImageGridAdapter adapter = new ImageGridAdapter(this, imageIds);
+        gridView.setAdapter(adapter);
+        
+        // Handle item clicks
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView&lt;?&gt; parent, View view, 
+                                  int position, long id) {
+                // Open full-screen image viewer
+                Intent intent = new Intent(ImageGridActivity.this, 
+                                         FullScreenImageActivity.class);
+                intent.putExtra("image_id", imageIds[position]);
+                intent.putExtra("position", position);
+                startActivity(intent);
+            }
+        });
+    }
+}
+
+public class ImageGridAdapter extends BaseAdapter {
+    
+    private Context context;
+    private int[] imageIds;
+    private LayoutInflater inflater;
+    
+    public ImageGridAdapter(Context context, int[] imageIds) {
+        this.context = context;
+        this.imageIds = imageIds;
+        this.inflater = LayoutInflater.from(context);
+    }
+    
+    @Override
+    public int getCount() {
+        return imageIds.length;
+    }
+    
+    @Override
+    public Object getItem(int position) {
+        return imageIds[position];
+    }
+    
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+    
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
+        
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.grid_item_image, parent, false);
+            holder = new ViewHolder();
+            holder.imageView = convertView.findViewById(R.id.imageView);
+            holder.overlayText = convertView.findViewById(R.id.overlayText);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+        
+        holder.imageView.setImageResource(imageIds[position]);
+        holder.overlayText.setText("Image " + (position + 1));
+        
+        return convertView;
+    }
+    
+    static class ViewHolder {
+        ImageView imageView;
+        TextView overlayText;
+    }
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
+                            <h4 class="text-lg font-semibold text-blue-800 mb-4">GridView Layout and Item Layout</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-xml">&lt;!-- activity_image_grid.xml --&gt;
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"&gt;
+
+    &lt;TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Image Gallery"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:padding="16dp"
+        android:background="#3b82f6"
+        android:textColor="white" /&gt;
+
+    &lt;GridView
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="3"
+        android:horizontalSpacing="4dp"
+        android:verticalSpacing="4dp"
+        android:padding="8dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center" /&gt;
+
+&lt;/LinearLayout&gt;
+
+&lt;!-- grid_item_image.xml --&gt;
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="@drawable/grid_item_background"&gt;
+
+    &lt;ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder_image" /&gt;
+
+    &lt;TextView
+        android:id="@+id/overlayText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/text_overlay_background"
+        android:text="Image"
+        android:textColor="white"
+        android:textSize="12sp"
+        android:textAlignment="center"
+        android:padding="8dp" /&gt;
+
+&lt;/FrameLayout&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RecyclerView Implementation -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 font-bold text-sm mr-3">R</span>
+                        RecyclerView Implementation (Modern Approach)
+                    </h3>
+                    
+                    <div class="bg-gradient-to-r from-purple-50 to-violet-50 rounded-xl p-6 mb-8 border border-purple-100">
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div>
+                                <h4 class="text-lg font-semibold text-purple-800 mb-3">Why RecyclerView?</h4>
+                                <ul class="text-purple-700 space-y-2 text-sm">
+                                    <li>• Mandatory ViewHolder pattern</li>
+                                    <li>• Better performance and memory usage</li>
+                                    <li>• Built-in animations</li>
+                                    <li>• Flexible layout managers</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-purple-800 mb-3">Layout Managers</h4>
+                                <ul class="text-purple-700 space-y-2 text-sm">
+                                    <li>• LinearLayoutManager</li>
+                                    <li>• GridLayoutManager</li>
+                                    <li>• StaggeredGridLayoutManager</li>
+                                    <li>• Custom Layout Managers</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-purple-800 mb-3">Key Components</h4>
+                                <ul class="text-purple-700 space-y-2 text-sm">
+                                    <li>• RecyclerView.Adapter</li>
+                                    <li>• RecyclerView.ViewHolder</li>
+                                    <li>• LayoutManager</li>
+                                    <li>• ItemDecoration</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RecyclerView Adapter -->
+                    <div class="grid lg:grid-cols-1 gap-8 mb-8">
+                        <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-100">
+                            <h4 class="text-lg font-semibold text-indigo-800 mb-4">RecyclerView Adapter</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">public class StudentAdapter extends RecyclerView.Adapter&lt;StudentAdapter.StudentViewHolder&gt; {
+    
+    private List&lt;Student&gt; students;
+    private Context context;
+    private OnItemClickListener listener;
+    
+    public interface OnItemClickListener {
+        void onItemClick(Student student, int position);
+        void onItemLongClick(Student student, int position);
+    }
+    
+    public StudentAdapter(Context context, List&lt;Student&gt; students) {
+        this.context = context;
+        this.students = students;
+    }
+    
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+    
+    @NonNull
+    @Override
+    public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context)
+                   .inflate(R.layout.item_student, parent, false);
+        return new StudentViewHolder(view);
+    }
+    
+    @Override
+    public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
+        Student student = students.get(position);
+        holder.bind(student, position);
+    }
+    
+    @Override
+    public int getItemCount() {
+        return students.size();
+    }
+    
+    // ViewHolder class
+    public class StudentViewHolder extends RecyclerView.ViewHolder {
+        
+        private TextView nameText, emailText, gradeText;
+        private ImageView profileImage;
+        private Button detailsButton;
+        private CardView cardView;
+        
+        public StudentViewHolder(@NonNull View itemView) {
+            super(itemView);
+            
+            nameText = itemView.findViewById(R.id.textStudentName);
+            emailText = itemView.findViewById(R.id.textStudentEmail);
+            gradeText = itemView.findViewById(R.id.textStudentGrade);
+            profileImage = itemView.findViewById(R.id.imageStudentProfile);
+            detailsButton = itemView.findViewById(R.id.buttonStudentDetails);
+            cardView = itemView.findViewById(R.id.cardView);
+        }
+        
+        public void bind(Student student, int position) {
+            nameText.setText(student.getName());
+            emailText.setText(student.getEmail());
+            gradeText.setText("Grade: " + student.getGrade());
+            
+            // Load profile image (placeholder for demo)
+            profileImage.setImageResource(R.drawable.student_placeholder);
+            
+            // Set grade color based on value
+            setGradeColor(student.getGrade());
+            
+            // Handle click events
+            cardView.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onItemClick(student, position);
+                }
+            });
+            
+            cardView.setOnLongClickListener(v -> {
+                if (listener != null) {
+                    listener.onItemLongClick(student, position);
+                }
+                return true;
+            });
+            
+            detailsButton.setOnClickListener(v -> {
+                Intent intent = new Intent(context, StudentDetailsActivity.class);
+                intent.putExtra("student_id", student.getId());
+                context.startActivity(intent);
+            });
+        }
+        
+        private void setGradeColor(String grade) {
+            int color;
+            switch (grade.toUpperCase()) {
+                case "A":
+                    color = ContextCompat.getColor(context, R.color.grade_a);
+                    break;
+                case "B":
+                    color = ContextCompat.getColor(context, R.color.grade_b);
+                    break;
+                case "C":
+                    color = ContextCompat.getColor(context, R.color.grade_c);
+                    break;
+                default:
+                    color = ContextCompat.getColor(context, R.color.grade_default);
+                    break;
+            }
+            gradeText.setTextColor(color);
+        }
+    }
+    
+    // Helper methods for dynamic updates
+    public void addStudent(Student student) {
+        students.add(student);
+        notifyItemInserted(students.size() - 1);
+    }
+    
+    public void removeStudent(int position) {
+        students.remove(position);
+        notifyItemRemoved(position);
+    }
+    
+    public void updateStudent(int position, Student student) {
+        students.set(position, student);
+        notifyItemChanged(position);
+    }
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-100">
+                            <h4 class="text-lg font-semibold text-green-800 mb-4">Using RecyclerView in Activity</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">public class StudentListActivity extends AppCompatActivity 
+    implements StudentAdapter.OnItemClickListener {
+    
+    private RecyclerView recyclerView;
+    private StudentAdapter adapter;
+    private List&lt;Student&gt; students;
+    private FloatingActionButton fabAdd;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_student_list);
+        
+        initializeViews();
+        setupRecyclerView();
+        loadStudentData();
+        setupFab();
+    }
+    
+    private void initializeViews() {
+        recyclerView = findViewById(R.id.recyclerViewStudents);
+        fabAdd = findViewById(R.id.fabAddStudent);
+    }
+    
+    private void setupRecyclerView() {
+        students = new ArrayList&lt;&gt;();
+        adapter = new StudentAdapter(this, students);
+        adapter.setOnItemClickListener(this);
+        
+        // Linear Layout Manager (vertical list)
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        
+        // Alternative: Grid Layout Manager
+        // GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        // recyclerView.setLayoutManager(gridLayoutManager);
+        
+        // Alternative: Staggered Grid Layout Manager
+        // StaggeredGridLayoutManager staggeredLayoutManager = 
+        //     new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        // recyclerView.setLayoutManager(staggeredLayoutManager);
+        
+        recyclerView.setAdapter(adapter);
+        
+        // Add item decoration for spacing
+        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.item_spacing);
+        recyclerView.addItemDecoration(new SpacingItemDecoration(spacingInPixels));
+        
+        // Add default animations
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+    }
+    
+    private void loadStudentData() {
+        // Sample data
+        students.add(new Student("1", "John Doe", "john@example.com", "A"));
+        students.add(new Student("2", "Jane Smith", "jane@example.com", "B"));
+        students.add(new Student("3", "Mike Johnson", "mike@example.com", "A"));
+        students.add(new Student("4", "Sarah Wilson", "sarah@example.com", "C"));
+        students.add(new Student("5", "David Brown", "david@example.com", "B"));
+        
+        adapter.notifyDataSetChanged();
+    }
+    
+    private void setupFab() {
+        fabAdd.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AddStudentActivity.class);
+            startActivityForResult(intent, REQUEST_ADD_STUDENT);
+        });
+    }
+    
+    @Override
+    public void onItemClick(Student student, int position) {
+        // Handle item click
+        Intent intent = new Intent(this, StudentDetailsActivity.class);
+        intent.putExtra("student", student);
+        startActivity(intent);
+    }
+    
+    @Override
+    public void onItemLongClick(Student student, int position) {
+        // Show options dialog
+        showStudentOptionsDialog(student, position);
+    }
+    
+    private void showStudentOptionsDialog(Student student, int position) {
+        String[] options = {"Edit", "Delete", "Share"};
+        
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Student Options")
+               .setItems(options, (dialog, which) -> {
+                   switch (which) {
+                       case 0: // Edit
+                           editStudent(student, position);
+                           break;
+                       case 1: // Delete
+                           deleteStudent(student, position);
+                           break;
+                       case 2: // Share
+                           shareStudent(student);
+                           break;
+                   }
+               })
+               .show();
+    }
+    
+    private void editStudent(Student student, int position) {
+        Intent intent = new Intent(this, EditStudentActivity.class);
+        intent.putExtra("student", student);
+        intent.putExtra("position", position);
+        startActivityForResult(intent, REQUEST_EDIT_STUDENT);
+    }
+    
+    private void deleteStudent(Student student, int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete Student")
+               .setMessage("Are you sure you want to delete " + student.getName() + "?")
+               .setPositiveButton("Delete", (dialog, which) -> {
+                   adapter.removeStudent(position);
+                   Toast.makeText(this, "Student deleted", Toast.LENGTH_SHORT).show();
+               })
+               .setNegativeButton("Cancel", null)
+               .show();
+    }
+    
+    private void shareStudent(Student student) {
+        String shareText = "Student: " + student.getName() + 
+                          "\nEmail: " + student.getEmail() + 
+                          "\nGrade: " + student.getGrade();
+        
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
+        startActivity(Intent.createChooser(shareIntent, "Share Student Info"));
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case REQUEST_ADD_STUDENT:
+                    Student newStudent = (Student) data.getSerializableExtra("student");
+                    adapter.addStudent(newStudent);
+                    break;
+                    
+                case REQUEST_EDIT_STUDENT:
+                    Student editedStudent = (Student) data.getSerializableExtra("student");
+                    int position = data.getIntExtra("position", -1);
+                    if (position != -1) {
+                        adapter.updateStudent(position, editedStudent);
+                    }
+                    break;
+            }
+        }
+    }
+    
+    private static final int REQUEST_ADD_STUDENT = 1;
+    private static final int REQUEST_EDIT_STUDENT = 2;
+}
+
+// Custom ItemDecoration for spacing
+public class SpacingItemDecoration extends RecyclerView.ItemDecoration {
+    private int spacing;
+    
+    public SpacingItemDecoration(int spacing) {
+        this.spacing = spacing;
+    }
+    
+    @Override
+    public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, 
+                              @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+        outRect.left = spacing;
+        outRect.right = spacing;
+        outRect.bottom = spacing;
+        
+        // Add top margin only for the first item to avoid double spacing
+        if (parent.getChildAdapterPosition(view) == 0) {
+            outRect.top = spacing;
+        }
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Student Model and Item Layout -->
+                    <div class="grid lg:grid-cols-1 gap-8">
+                        <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-6 border border-orange-100">
+                            <h4 class="text-lg font-semibold text-orange-800 mb-4">Student Model Class</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">public class Student implements Serializable {
+    private String id;
+    private String name;
+    private String email;
+    private String grade;
+    private String phone;
+    private String address;
+    private Date enrollmentDate;
+    
+    public Student() {
+        // Default constructor
+    }
+    
+    public Student(String id, String name, String email, String grade) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.grade = grade;
+        this.enrollmentDate = new Date();
+    }
+    
+    public Student(String id, String name, String email, String grade, 
+                  String phone, String address) {
+        this(id, name, email, grade);
+        this.phone = phone;
+        this.address = address;
+    }
+    
+    // Getters
+    public String getId() { return id; }
+    public String getName() { return name; }
+    public String getEmail() { return email; }
+    public String getGrade() { return grade; }
+    public String getPhone() { return phone; }
+    public String getAddress() { return address; }
+    public Date getEnrollmentDate() { return enrollmentDate; }
+    
+    // Setters
+    public void setId(String id) { this.id = id; }
+    public void setName(String name) { this.name = name; }
+    public void setEmail(String email) { this.email = email; }
+    public void setGrade(String grade) { this.grade = grade; }
+    public void setPhone(String phone) { this.phone = phone; }
+    public void setAddress(String address) { this.address = address; }
+    public void setEnrollmentDate(Date enrollmentDate) { 
+        this.enrollmentDate = enrollmentDate; 
+    }
+    
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", grade='" + grade + '\'' +
+                '}';
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(id, student.id);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
+                            <h4 class="text-lg font-semibold text-blue-800 mb-4">RecyclerView Item Layout (item_student.xml)</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    android:foreground="?android:attr/selectableItemBackground"&gt;
+
+    &lt;LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"&gt;
+
+        &lt;ImageView
+            android:id="@+id/imageStudentProfile"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/student_placeholder"
+            android:scaleType="centerCrop"
+            android:background="@drawable/circle_background"
+            android:layout_marginEnd="16dp"
+            android:layout_gravity="center_vertical" /&gt;
+
+        &lt;LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"&gt;
+
+            &lt;TextView
+                android:id="@+id/textStudentName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Student Name"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#1f2937"
+                android:maxLines="1"
+                android:ellipsize="end" /&gt;
+
+            &lt;TextView
+                android:id="@+id/textStudentEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="student@example.com"
+                android:textSize="14sp"
+                android:textColor="#6b7280"
+                android:layout_marginTop="4dp"
+                android:maxLines="1"
+                android:ellipsize="end" /&gt;
+
+            &lt;TextView
+                android:id="@+id/textStudentGrade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grade: A"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp" /&gt;
+
+        &lt;/LinearLayout&gt;
+
+        &lt;Button
+            android:id="@+id/buttonStudentDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Details"
+            android:textSize="12sp"
+            android:backgroundTint="#3b82f6"
+            android:layout_gravity="center_vertical"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton" /&gt;
+
+    &lt;/LinearLayout&gt;
+
+&lt;/androidx.cardview.widget.CardView&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Unit 7: Advanced Concepts -->
+        <section id="unit7" class="mb-20">
+            <div class="bg-white/70  rounded-2xl  border border-white/20 p-8">
+                <div class="flex items-center mb-8">
+                    <div class="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4">7</div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-primary">Advanced Android Concepts</h2>
+                        <p class="text-slate-600">SQLite, APIs, JSON, and Google Maps • 10 Hours</p>
+                    </div>
+                </div>
+
+                <!-- SQLite Database -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-primary mb-6 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center text-accent font-bold text-sm mr-3">S</span>
+                        Local Database with SQLite
+                    </h3>
+                    
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 mb-8 border border-blue-100">
+                        <div class="grid md:grid-cols-1 gap-6">
+                            <div>
+                                <h4 class="text-lg font-semibold text-blue-800 mb-3">What is SQLite?</h4>
+                                <ul class="text-blue-700 space-y-2 text-sm">
+                                    <li>• Lightweight database engine built into Android</li>
+                                    <li>• No server setup required</li>
+                                    <li>• Supports standard SQL operations</li>
+                                    <li>• Perfect for local data storage</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-blue-800 mb-3">Key Components</h4>
+                                <ul class="text-blue-700 space-y-2 text-sm">
+                                    <li>• SQLiteOpenHelper</li>
+                                    <li>• SQLiteDatabase</li>
+                                    <li>• ContentValues</li>
+                                    <li>• Cursor</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Database Helper Implementation -->
+                    <div class="grid lg:grid-cols-1 gap-8 mb-8">
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-100">
+                            <h4 class="text-lg font-semibold text-green-800 mb-4">Database Helper Class</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">public class DatabaseHelper extends SQLiteOpenHelper {
+    
+    // Database Info
+    private static final String DATABASE_NAME = "StudentDB";
+    private static final int DATABASE_VERSION = 1;
+    
+    // Table Names
+    private static final String TABLE_STUDENTS = "students";
+    private static final String TABLE_COURSES = "courses";
+    private static final String TABLE_ENROLLMENTS = "enrollments";
+    
+    // Students Table Columns
+    private static final String KEY_STUDENT_ID = "student_id";
+    private static final String KEY_STUDENT_NAME = "name";
+    private static final String KEY_STUDENT_EMAIL = "email";
+    private static final String KEY_STUDENT_PHONE = "phone";
+    private static final String KEY_STUDENT_GRADE = "grade";
+    private static final String KEY_STUDENT_CREATED = "created_at";
+    
+    // Courses Table Columns
+    private static final String KEY_COURSE_ID = "course_id";
+    private static final String KEY_COURSE_NAME = "course_name";
+    private static final String KEY_COURSE_CODE = "course_code";
+    private static final String KEY_COURSE_CREDITS = "credits";
+    
+    // Enrollments Table Columns
+    private static final String KEY_ENROLLMENT_ID = "enrollment_id";
+    private static final String KEY_ENROLLMENT_STUDENT_ID = "student_id";
+    private static final String KEY_ENROLLMENT_COURSE_ID = "course_id";
+    private static final String KEY_ENROLLMENT_DATE = "enrollment_date";
+    
+    public DatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+    
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        // Create Students table
+        String CREATE_STUDENTS_TABLE = "CREATE TABLE " + TABLE_STUDENTS + "("
+                + KEY_STUDENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + KEY_STUDENT_NAME + " TEXT NOT NULL,"
+                + KEY_STUDENT_EMAIL + " TEXT UNIQUE NOT NULL,"
+                + KEY_STUDENT_PHONE + " TEXT,"
+                + KEY_STUDENT_GRADE + " TEXT,"
+                + KEY_STUDENT_CREATED + " DATETIME DEFAULT CURRENT_TIMESTAMP"
+                + ")";
+        
+        // Create Courses table
+        String CREATE_COURSES_TABLE = "CREATE TABLE " + TABLE_COURSES + "("
+                + KEY_COURSE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + KEY_COURSE_NAME + " TEXT NOT NULL,"
+                + KEY_COURSE_CODE + " TEXT UNIQUE NOT NULL,"
+                + KEY_COURSE_CREDITS + " INTEGER DEFAULT 3"
+                + ")";
+        
+        // Create Enrollments table
+        String CREATE_ENROLLMENTS_TABLE = "CREATE TABLE " + TABLE_ENROLLMENTS + "("
+                + KEY_ENROLLMENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + KEY_ENROLLMENT_STUDENT_ID + " INTEGER,"
+                + KEY_ENROLLMENT_COURSE_ID + " INTEGER,"
+                + KEY_ENROLLMENT_DATE + " DATETIME DEFAULT CURRENT_TIMESTAMP,"
+                + "FOREIGN KEY(" + KEY_ENROLLMENT_STUDENT_ID + ") REFERENCES " 
+                + TABLE_STUDENTS + "(" + KEY_STUDENT_ID + "),"
+                + "FOREIGN KEY(" + KEY_ENROLLMENT_COURSE_ID + ") REFERENCES " 
+                + TABLE_COURSES + "(" + KEY_COURSE_ID + ")"
+                + ")";
+        
+        db.execSQL(CREATE_STUDENTS_TABLE);
+        db.execSQL(CREATE_COURSES_TABLE);
+        db.execSQL(CREATE_ENROLLMENTS_TABLE);
+        
+        // Insert sample data
+        insertSampleData(db);
+    }
+    
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // Drop older tables if existed
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ENROLLMENTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_COURSES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_STUDENTS);
+        
+        // Create tables again
+        onCreate(db);
+    }
+    
+    private void insertSampleData(SQLiteDatabase db) {
+        // Insert sample students
+        ContentValues values = new ContentValues();
+        
+        values.put(KEY_STUDENT_NAME, "John Doe");
+        values.put(KEY_STUDENT_EMAIL, "john@example.com");
+        values.put(KEY_STUDENT_PHONE, "+1234567890");
+        values.put(KEY_STUDENT_GRADE, "A");
+        db.insert(TABLE_STUDENTS, null, values);
+        
+        values.clear();
+        values.put(KEY_STUDENT_NAME, "Jane Smith");
+        values.put(KEY_STUDENT_EMAIL, "jane@example.com");
+        values.put(KEY_STUDENT_PHONE, "+1234567891");
+        values.put(KEY_STUDENT_GRADE, "B");
+        db.insert(TABLE_STUDENTS, null, values);
+        
+        // Insert sample courses
+        values.clear();
+        values.put(KEY_COURSE_NAME, "Mobile Programming");
+        values.put(KEY_COURSE_CODE, "CS301");
+        values.put(KEY_COURSE_CREDITS, 4);
+        db.insert(TABLE_COURSES, null, values);
+        
+        values.clear();
+        values.put(KEY_COURSE_NAME, "Database Systems");
+        values.put(KEY_COURSE_CODE, "CS302");
+        values.put(KEY_COURSE_CREDITS, 3);
+        db.insert(TABLE_COURSES, null, values);
+    }
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-6 border border-purple-100">
+                            <h4 class="text-lg font-semibold text-purple-800 mb-4">CRUD Operations</h4>
+                            <div class="bg-slate-900 rounded-lg p-4 code-block">
+                                <pre><code class="language-java">public class StudentDAO {
+    
+    private DatabaseHelper dbHelper;
+    private SQLiteDatabase database;
+    
+    public StudentDAO(Context context) {
+        dbHelper = new DatabaseHelper(context);
+    }
+    
+    public void open() throws SQLException {
+        database = dbHelper.getWritableDatabase();
+    }
+    
+    public void close() {
+        if (dbHelper != null) {
+            dbHelper.close();
+        }
+    }
+    
+    // CREATE - Insert new student
+    public long insertStudent(Student student) {
+        ContentValues values = new ContentValues();
+        values.put("name", student.getName());
+        values.put("email", student.getEmail());
+        values.put("phone", student.getPhone());
+        values.put("grade", student.getGrade());
+        
+        return database.insert("students", null, values);
+    }
+    
+    // READ - Get all students
+    public List&lt;Student&gt; getAllStudents() {
+        List&lt;Student&gt; students = new ArrayList&lt;&gt;();
+        
+        String selectQuery = "SELECT * FROM students ORDER BY name ASC";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        
+        if (cursor.moveToFirst()) {
+            do {
+                Student student = new Student();
+                student.setId(cursor.getString(cursor.getColumnIndex("student_id")));
+                student.setName(cursor.getString(cursor.getColumnIndex("name")));
+                student.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+                student.setPhone(cursor.getString(cursor.getColumnIndex("phone")));
+                student.setGrade(cursor.getString(cursor.getColumnIndex("grade")));
+                
+                students.add(student);
+            } while (cursor.moveToNext());
+        }
+        
+        cursor.close();
+        return students;
+    }
+    
+    // READ - Get student by ID
+    public Student getStudentById(String studentId) {
+        String selectQuery = "SELECT * FROM students WHERE student_id = ?";
+        Cursor cursor = database.rawQuery(selectQuery, new String[]{studentId});
+        
+        Student student = null;
+        if (cursor.moveToFirst()) {
+            student = new Student();
+            student.setId(cursor.getString(cursor.getColumnIndex("student_id")));
+            student.setName(cursor.getString(cursor.getColumnIndex("name")));
+            student.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+            student.setPhone(cursor.getString(cursor.getColumnIndex("phone")));
+            student.setGrade(cursor.getString(cursor.getColumnIndex("grade")));
+        }
+        
+        cursor.close();
+        return student;
+    }
+    
+    // UPDATE - Update student
+    public int updateStudent(Student student) {
+        ContentValues values = new ContentValues();
+        values.put("name", student.getName());
+        values.put("email", student.getEmail());
+        values.put("phone", student.getPhone());
+        values.put("grade", student.getGrade());
+        
+        return database.update("students", values, 
+                             "student_id = ?", 
+                             new String[]{student.getId()});
+    }
+    
+    // DELETE - Delete student
+    public int deleteStudent(String studentId) {
+        return database.delete("students", 
+                             "student_id = ?", 
+                             new String[]{studentId});
